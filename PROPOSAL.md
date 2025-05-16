@@ -2,13 +2,12 @@
 
 ## Group Members:
 
-names here.(CHANGE THIS!!!!!)
-       
+Mottaqi Abedin and Leilah Yik
+
 # IDEAS:
 
-1 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+1. Plants vs Zombies, but we only have 3 variations of zombies and plants unlocked in the normal daytime levels (e.g. peashooter, sunflower, walnut, chomper).
 
-2 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
+2. Chess, but you play against a really dumb AI that can bend the rules (e.g. bringing back lost pieces, moves pieces incorrectly).
 
-3 statement of the problem you are solving and/or a high level description of the project. (CHANGE THIS!!!!!)
-
+3. Suika Game (tetris x 2048 with fruits that merge and pop).
