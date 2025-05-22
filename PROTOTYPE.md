@@ -44,6 +44,7 @@ How you are breaking down the project and who is responsible for which parts.
 - Win / Loss condition (Leilah)
   - End the game if a zombie reaches the left side or if no more zombies will spawn
   - Display a Game Over screen displaying your result
+  
 **WEEK 2 (FINISH BEFORE 6/2)**
 - Sunflower and sun currency system (Mottaqi)
   - Spawn suns on the grid at intervals
