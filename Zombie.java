@@ -3,8 +3,9 @@ abstract class Zombie{
   private int currHealth;
   private float speed;
   private Point pos;
+  private int damage;
 
-  private void updateHealth(int dmg){};
+  public void updateHealth(int dmg){};
   private void move(){};
   private void eat(Plant target){};
   private int getHealth(){};
