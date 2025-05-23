@@ -4,15 +4,19 @@ abstract class Plant{
   private int currHealth;
   private Position pos;
 
-  public void UpdateHealth(int){
-
+  public Plant(int hp,int cost){
+    startingHealth=hp;
+    currHealth=hp;
+    this.cost=cost;
   }
 
-  public void die(){
-
+  public void UpdateHealth(int damage){
+    currHealth -= damage;
   }
 
-  public abstract void ability(){
-    
+  public int getHP() {
+    return currHealth;
   }
+
+  public abstract void ability();
 }
