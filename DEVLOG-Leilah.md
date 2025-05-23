@@ -9,3 +9,10 @@ Expanded description including how much time was spent on task.
 
 ### 2024-01-03 - Brief description
 Expanded description including how much time was spent on task.
+
+
+
+## Leilah Yik
+
+### 2025-05-22 - UML Diagram
+Spent entire class and 30 mins at home revising UML Diagram. May need to make further changes
