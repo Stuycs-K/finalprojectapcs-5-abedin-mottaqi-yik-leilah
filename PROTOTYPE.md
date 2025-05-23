@@ -22,7 +22,7 @@ Some things we will use that we have learned from class are interfaces and class
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
-![UML Diagram](apcs_finalproject_uml.drawio.png)
+![UML Diagram](UMLDiagramUpdated.drawio.png)
 
 
 # Intended pacing:
