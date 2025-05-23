@@ -7,5 +7,5 @@ abstract class Zombie{
   private void updateHealth(int dmg){};
   private void move(){};
   private void eat(Plant target){};
-  private void die(){};
+  private int getHealth(){};
 }
