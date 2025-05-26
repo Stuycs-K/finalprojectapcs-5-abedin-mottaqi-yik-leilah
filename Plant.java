@@ -18,8 +18,12 @@ public abstract class Plant{
   public int getHealth(){
     return health;
   }
-  public void UpdateHealth(int damage){
+  public void takeDamage(int damage){
+    if(damage>health){
+      health=0;
+    }
     this.health -= damage;
   }
+  public abstract void update();
   public abstract void ability();
 }
