@@ -1,22 +1,29 @@
-abstract class Plant{
+import java.awt.Point;;
+public abstract class Plant{
   private int cost;
-  private int startingHealth;
-  private int currHealth;
-  private Position pos;
+  private int health;
+  private Point pos;
 
-  public Plant(int hp,int cost){
-    startingHealth=hp;
-    currHealth=hp;
+  public Plant(Point cell,int hp,int cost){
+    this.pos=cell;
+    this.health=hp;
     this.cost=cost;
   }
-
-  public void UpdateHealth(int damage){
-    currHealth -= damage;
+  public Point getPos(){
+    return pos;
   }
-
-  public int getHP() {
-    return currHealth;
+  public int getCost(){
+    return cost;
   }
-
+  public int getHealth(){
+    return health;
+  }
+  public void takeDamage(int damage){
+    if(damage>health){
+      health=0;
+    }
+    this.health -= damage;
+  }
+  public abstract void update();
   public abstract void ability();
 }
