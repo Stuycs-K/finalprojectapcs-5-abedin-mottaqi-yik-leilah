@@ -1,4 +1,4 @@
-abstract class Zombie{
+abstract class Zombie extends Displayable{
   private int startingHealh;
   private int currHealth;
   private float speed;

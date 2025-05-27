@@ -4,18 +4,21 @@ public class NormalZombie extends Zombie{
     currHealth = 100;
     speed = 1.0;
     damage = 10;
+    show();
   }
   public void updateHealth(int dmg){
     currHealth -= dmg;
   }
 
   public void move(){
-    pos =
+    pos = pos.move(pos.getX() - 5, pos.getY());
   }
 
   public void eat(Plant target){
     target.updateHealth(damage);
   }
 
-  private
+  private void die(){
+    hide();
+  }
 }
