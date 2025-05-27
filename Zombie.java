@@ -1,9 +1,8 @@
 import java.awt.Point;
-public abstract class Zombie{
+public abstract class Zombie extends Displayable{
     private int health;
     private final float speed;
     private Point pos;
-    private boolean remove = false;
 
     public Zombie(Point start,float speed,int health){
         this.pos=start;
@@ -17,7 +16,7 @@ public abstract class Zombie{
         };
         health-=dmg;
         if (health==0){
-            remove = true;
+            hide();
         };
     };
     public int getHealth(){
@@ -25,9 +24,6 @@ public abstract class Zombie{
     };
     public Point getPos(){
         return pos;
-    };
-    public boolean getRemove(){
-        return remove;
     };
     public abstract void draw();
 }
