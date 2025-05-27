@@ -9,3 +9,6 @@ Spent class time making a skeleton outline for different classes.
 
 2025-05-23 - Plant code
 Spent class time working on the Plant class.
+
+2025-05-26 - Projectile, Zombie, Plant code
+Made some changes in Projectile, Zombie, NormalZombie, Plant classes.
