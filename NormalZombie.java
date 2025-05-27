@@ -6,6 +6,7 @@ public class NormalZombie extends Zombie{
 
   public NormalZombie(Point start){
     super(start,defaultSpeed,defaultHealth);
+    show();
   };
   @Override
   public void draw(){};
