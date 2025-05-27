@@ -1,21 +1,11 @@
+import java.awt.Point;
 public class NormalZombie extends Zombie{
-  public Zombie(int row){
-    startingHealh = 100;
-    currHealth = 100;
-    speed = 1.0;
-    damage = 10;
-  }
-  public void updateHealth(int dmg){
-    currHealth -= dmg;
-  }
+  private static final int defaultHealth = 200;
+  private static final float defaultSpeed = 1.0f;
 
-  public void move(){
-    pos =
-  }
-
-  public void eat(Plant target){
-    target.updateHealth(damage);
-  }
-
-  private
+  public NormalZombie(Point start){
+    super(start,defaultSpeed,defaultHealth);
+  };
+  @Override
+  public void draw(){};
 }
