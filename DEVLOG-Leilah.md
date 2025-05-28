@@ -16,4 +16,4 @@ Worked on UML Diagram (still updating, didn't put it on GitHub yet). Added Displ
 ### 2025-05-27 - Fixing Everything
 Fixed inconsistencies and things that didn't make sense with what methods were in what class, whether things were abstract classes/interfaces, what should/shouldn't be an instance variable. Removed Sun file because we're using PlayerSun instead. 
 
-Worked on known starting numbers for the game (PlayerSun starting amount, zombie/plant stats). Added more to the game class as well as what we put in our updated UML Diagram that I haven't uploaded yet. Added wave class for the levels. Worked on board class.
+Worked on known starting numbers for the game (PlayerSun starting amount, zombie/plant stats). Added more to the game class as well as what we put in our updated UML Diagram that I haven't uploaded yet. Added wave class for the levels. Worked on board class. Worked on UIManager. 
