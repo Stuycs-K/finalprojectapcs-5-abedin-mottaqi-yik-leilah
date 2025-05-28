@@ -1,12 +1,10 @@
 import java.awt.Point;
 
 interface Displayable {
+    
+    Point getPos();
 
-    public Point getPos();
+    void show();
 
-    public void show();
-
-    public void hide();
-
-    public void move();
+    void hide();
 }
