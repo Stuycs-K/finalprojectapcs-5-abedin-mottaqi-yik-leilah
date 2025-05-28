@@ -5,6 +5,14 @@ public class NormalSun implements Interactable {
     private final int fallSpeed = 1; // idk what this value should be pls figure it out leilah thanks
     private final int radius = 20; // idk what this value should be pls figure it out leilah thanks 
     
+    /*
+     * notes:
+     * - sun spawns roughly every 8 seconds
+     * - normal sun provides 25 sun 
+     * - sunflower production rate is every 24 seconds
+     */
+
+
     public NormalSun(Point pos) {
         this.pos = new Point(pos);
     }
