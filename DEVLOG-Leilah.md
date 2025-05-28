@@ -14,4 +14,6 @@ Spent class time revisiting UML Diagaram/plan with Mr. K. Made changes to UML Di
 Worked on UML Diagram (still updating, didn't put it on GitHub yet). Added Displayable class for zombies and plants (and others we may want to show). Worked on Displayable class, Zombie class, and NormalZombie. Added Interactable and NormalSun files as well as some notes on them.
 
 ### 2025-05-27 - Fixing Everything
-Fixed inconsistencies and things that didn't make sense with what methods were in what class, whether things were abstract classes/interfaces, what should/shouldn't be an instance variable
+Fixed inconsistencies and things that didn't make sense with what methods were in what class, whether things were abstract classes/interfaces, what should/shouldn't be an instance variable. Removed Sun file because we're using PlayerSun instead. 
+
+Worked on known starting numbers for the game (PlayerSun starting amount, zombie/plant stats). Added more to the game class as well as what we put in our updated UML Diagram that I haven't uploaded yet. Added wave class for the levels.
