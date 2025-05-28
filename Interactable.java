@@ -1,7 +1,7 @@
-public class Interactable extends Displayable{
-    public void spawn() {
-        show();
-    }
+public abstract class Interactable implements Displayable{
+    public abstract void update();
 
-    public void interact(){}
+    public void interact() {
+        
+    }
 }
