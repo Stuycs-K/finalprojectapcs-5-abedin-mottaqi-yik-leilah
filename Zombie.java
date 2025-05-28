@@ -17,7 +17,6 @@ public abstract class Zombie implements Displayable{
         this.speed=speed;
         this.health=health;
     };
-    public void update(){};
     public void takeDamage(int dmg){
         if (dmg>health){
             health=0;
