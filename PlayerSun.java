@@ -1,9 +1,9 @@
 public class PlayerSun{
   private int sunAmount;
-  public PlayerSun(){sunAmount = 0;}
+  public PlayerSun(){sunAmount = 50;}
   public PlayerSun(int sunAmount){
     this.sunAmount=sunAmount; //idk how much sun you start with in pvz
-    // its variable but usually 0 so
+    // its variable but usually 50 so you can place a sunflower
   }
   public int getSunAmount(){
     return sunAmount;

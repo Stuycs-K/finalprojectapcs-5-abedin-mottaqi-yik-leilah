@@ -1,5 +1,12 @@
 import java.awt.Point;
 public abstract class Zombie implements Displayable{
+
+    /*
+     * notes:
+     * - basic zombie moves one square every 5 seconds
+     * - flag zombies move slightly faster than normal zombies
+     */
+
     private int health;
     private final float speed;
     private Point pos;
