@@ -1,5 +1,5 @@
 import java.awt.Point;
-public class NormalSun extends Interactable {
+public class NormalSun implements Interactable {
     private Point pos;
     private boolean collected = false;
     private final int fallSpeed = 1; // idk what this value should be pls figure it out leilah thanks
@@ -24,6 +24,7 @@ public class NormalSun extends Interactable {
     }
     @Override
     public Point getPos() {
+        return pos;
     }
     public boolean isCollected() {
         return collected;
