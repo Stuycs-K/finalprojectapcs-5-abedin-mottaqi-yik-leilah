@@ -18,4 +18,6 @@ Fixed inconsistencies and things that didn't make sense with what methods were i
 
 Worked on finding starting numbers for the game (PlayerSun starting amount, zombie/plant stats). Added more to the game class as well as what we put in our updated UML Diagram that I haven't uploaded yet. Added wave class for the levels. Worked on board class. Worked on UIManager.
 
-### 2025-05-28 - 
+### 2025-05-28 -
+
+### 2025-05-29 -

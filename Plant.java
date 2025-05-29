@@ -1,11 +1,11 @@
-import java.awt.Point;;
+import java.awt.Point;
 public abstract class Plant implements Displayable{
   private int cost;
   private int health;
-  private Point pos;
+  private int[] pos;
 
-  public Plant(Point cell,int hp,int cost){
-    this.pos=cell;
+  public Plant(int[] pos,int hp,int cost){
+    this.pos=pos;
     this.health=hp;
     this.cost=cost;
   }
