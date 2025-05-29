@@ -18,3 +18,6 @@ Too many merge conflicts to make changes, made changes on Leilah's computer.
 
 2025-05-27-At-Home - made more skeleton code
 created code for NormalSun, Sun and Sunflower
+
+2025-05-29 - started implementing into processing
+fixed code in game class and made a main.pde
