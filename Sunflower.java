@@ -1,12 +1,11 @@
 import java.awt.Point;
 import java.util.*;
-public class Sunflower extends Plant implements Interactable{
+public class Sunflower extends Plant {
     private int timer = 0;
-    private final int cooldown = 300;
-    private ArrayList<NormalSun> suns = new ArrayList<>();
+    private final int cooldown = 480;
 
-    public Sunflower(Point cell,ArrayList<NormalSun> sunList){
-      super(cell,50, 300); // figure out health and cost k thanks
+    public Sunflower(int[] pos,ArrayList<NormalSun> sunList){
+      super(pos, 50, 300); // figure out health and cost k thanks
     }
 
     @Override
@@ -14,11 +13,16 @@ public class Sunflower extends Plant implements Interactable{
 
     }
 
+    @Override
+    public void ability(){
+      spawnSun();
+    }
+
     private void spawnSun(){
         Point sunPosition = new Point(getPos().x, getPos().y);
         NormalSun sun = new NormalSun(sunPosition);
-        suns.add(sun);
     }
+
     @Override
     public void show(){
 
@@ -26,8 +30,5 @@ public class Sunflower extends Plant implements Interactable{
     @Override
     public void hide(){
 
-    }
-    @Override
-    public void interact(){
     }
 }
