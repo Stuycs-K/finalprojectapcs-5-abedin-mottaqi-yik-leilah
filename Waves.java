@@ -27,4 +27,8 @@ public class Waves {
       }
       return spawned;
     }
+    
+    public boolean waveDone(){
+      return index >= zombieTypes.size();
+    }
 }
