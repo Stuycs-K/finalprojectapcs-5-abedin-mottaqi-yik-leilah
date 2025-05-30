@@ -7,7 +7,7 @@ public class Waves {
     private int timer = 0;
     private int index = 0; // to track what zombie we are on
 
-    private addWave(int num, Zombie type, int time){
+    public void addWave(int num, Zombie type, int time){
         zombieTypes.add(type);
         zombieCount.add(num);
         spawnTime.add(time);

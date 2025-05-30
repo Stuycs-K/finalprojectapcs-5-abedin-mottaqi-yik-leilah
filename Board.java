@@ -1,13 +1,16 @@
+import processing.core.PApplet;
 import java.util.*;
 public class Board {
     private Plant[][] plantGrid;
     // he said to use smth else for zombies bc they wont really be on a grid
     // private ArrayList<Double> zombieRowPos; ima be honest I don't think we need this since theres no need to track this seperately
     private ArrayList<Zombie> zombies;
-  
-    public Board(int rows, int cols, int screenWidth, int screenHeight){
+    private PApplet p;
+    
+    public Board(int rows, int cols, int screenWidth, int screenHeight, PApplet sketch){
       plantGrid = new Plant[rows][cols];
       zombies = new ArrayList<>();
+      p = sketch;
     }
     
     public boolean isOccupied(int row, int col){
@@ -58,9 +61,9 @@ public class Board {
       int cellHeight = 100;
       for (int r=0;r<plantGrid.length;r++){
         for (int c=0;c<plantGrid[0].length;c++){
-          stroke(0);
-          fill(100,200,100);
-          rect(c*cellWidth,r*cellHeight,cellWidth,cellHeight);
+          p.stroke(0);
+          p.fill(100,200,100);
+          p.rect(c*cellWidth,r*cellHeight,cellWidth,cellHeight);
         }
       }
     }
