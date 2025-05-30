@@ -45,6 +45,12 @@ public class Board {
       }
     }
 
+    public void updateZombies(){
+      for (int i = 0; i < zombies.size(); i++){
+        zombies.get(i).move();
+      }
+    }
+
     // this should draw all plants currently on the board;
     public void drawPlants(){
       for (int r=0;r<plantGrid.length;r++){
