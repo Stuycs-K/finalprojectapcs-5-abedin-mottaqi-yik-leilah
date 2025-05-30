@@ -12,9 +12,4 @@ void setup(){
 void draw() {
   background(100,200,100);
   game.update();
-  game.render();
-}
-
-void mousePressed(){
-  game.handleClick(mouseX,mouseY);
 }

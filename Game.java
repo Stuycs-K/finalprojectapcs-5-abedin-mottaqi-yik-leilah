@@ -4,7 +4,7 @@ public class Game {
   private ArrayList<Plant> plants = new ArrayList<Plant>();
   private ArrayList<Zombie> zombie = new ArrayList<Zombie>();
   private PlayerSun suns = new PlayerSun();
-  private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
+  //private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
   private ArrayList<Waves> levels = new ArrayList<Waves>();
   private Waves current = null;
   private Board lawn;
@@ -24,7 +24,7 @@ public class Game {
     }
     levels.add(level1);
   }
-  private void startLevel(int idx){
+  public void startLevel(int idx){
     if (idx>=0 && idx<levels.size()) {
       currentWave = levels.get(idx);
       mainMenu = false;
