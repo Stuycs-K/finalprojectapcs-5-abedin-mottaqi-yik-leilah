@@ -10,7 +10,8 @@ public class Sunflower extends Plant {
 
     @Override
     public void update(){
-
+      if (timer == cooldown) ability();
+      timer = (timer + 1)%cooldown;
     }
 
     @Override
