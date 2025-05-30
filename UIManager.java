@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 public class UIManager {
     private ArrayList<Plant> plantDisplay = new ArrayList<Plant>();
     private ArrayList<Boolean> plantSelected = new ArrayList<Boolean>();

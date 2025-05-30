@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 import java.awt.Point;
 public class NormalZombie extends Zombie{
   private static final int defaultHealth = 200;
@@ -10,10 +11,10 @@ public class NormalZombie extends Zombie{
 
   @Override
   public void show() {
-    
+
   }
   @Override
   public void hide() {
-    
+
   }
 }

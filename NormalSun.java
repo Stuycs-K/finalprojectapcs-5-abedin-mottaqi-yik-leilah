@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 import java.awt.Point;
 public class NormalSun implements Interactable {
     private Point pos;
@@ -33,7 +34,7 @@ public class NormalSun implements Interactable {
     public void interact() {
         collected = true;
     }
-    
+
     @Override
     public void update() {
         // update 15 to be whatever the width of a row will be + the sky

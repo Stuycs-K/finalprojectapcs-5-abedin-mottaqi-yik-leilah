@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 public class PlayerSun{
   private int sunAmount;
   public PlayerSun(){sunAmount = 50;}
