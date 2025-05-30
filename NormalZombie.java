@@ -7,4 +7,13 @@ public class NormalZombie extends Zombie{
     super(start,defaultSpeed,defaultHealth);
     show();
   };
+
+  @Override
+  public void show() {
+    
+  }
+  @Override
+  public void hide() {
+    
+  }
 }
