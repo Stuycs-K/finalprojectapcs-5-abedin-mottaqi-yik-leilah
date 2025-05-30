@@ -31,6 +31,29 @@ public class Board {
       }
     }
 
+    // do we need an updatePlants method...?
+    // idk this is supposed to update any plants that are interactable if i know what i'm doing
+    public void updatePlants(){
+      for (int r=0;r<plantGrid.length;r++){
+        for (int c=0;c<plantGrid[0].length;c++){
+          if (plantGrid[r][c] instanceof Interactable){
+            ((Interactable)plantGrid[r][c]).update();
+          }
+        }
+      }
+    }
+
+    // this should draw all plants currently on the board;
+    public void drawPlants(){
+      for (int r=0;r<plantGrid.length;r++){
+        for (int c=0;c<plantGrid[0].length;c++){
+          if (plantGrid[r][c] != null){
+            plantGrid[r][c].show();
+          }
+        }
+      }
+    }
+
     public void drawGrid() {
       int cellWidth = 100;
       int cellHeight = 100;
