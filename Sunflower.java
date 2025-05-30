@@ -5,12 +5,13 @@ public class Sunflower extends Plant {
     private final int cooldown = 480;
 
     public Sunflower(int[] pos,ArrayList<NormalSun> sunList){
-      super(pos, 50, 300); // figure out health and cost k thanks
+      super(pos, 300, 50); // figure out health and cost k thanks
     }
 
     @Override
     public void update(){
-
+      if (timer == cooldown) ability();
+      timer = (timer + 1)%cooldown;
     }
 
     @Override
