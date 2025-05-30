@@ -2,13 +2,12 @@ import java.util.*;
 public class Board {
     private Plant[][] plantGrid;
     // he said to use smth else for zombies bc they wont really be on a grid
-    private ArrayList<Double> zombieRowPos;
+    // private ArrayList<Double> zombieRowPos; ima be honest I don't think we need this since theres no need to track this seperately
     private ArrayList<Zombie> zombies;
   
     public Board(int rows, int cols, int screenWidth, int screenHeight){
       plantGrid = new Plant[rows][cols];
       zombies = new ArrayList<>();
-      zombieRowPos = new ArrayList<>();
     }
     
     public boolean isOccupied(int row, int col){
@@ -67,13 +66,15 @@ public class Board {
     }
 
     public void spawnZombie(Zombie zomb, int row){
-        zombies.add(zomb);
-        // lowk i dont know hwat im doin gnone of this makes sense...
-        // add it to the end of the row but we dont know
-        zombieRowPos.add();
+      zombies.add(zomb);
     }
 
-    public void removeZombie(Zombie zomb){
-        zombies.remove(zomb);
+    public ArrayList<Zombie> getZombies(){
+      return zombies;
     }
+    public void removeZombie(Zombie zomb){
+      zombies.remove(zomb);
+    }
+
+    // we need to make methods to convert a pixel to a cell on the grid so that we can track where the user clicked
 }
