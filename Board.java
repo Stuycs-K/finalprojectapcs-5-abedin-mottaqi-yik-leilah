@@ -1,6 +1,6 @@
 import java.util.*;
 public class Board {
-    private Plant[][] plantGrid = new Plant[5][9];
+    private Plant[][] plantGrid;
     // he said to use smth else for zombies bc they wont really be on a grid
     private ArrayList<Double> zombieRowPos;
     private ArrayList<Zombie> zombies;
@@ -15,7 +15,22 @@ public class Board {
         if (plantGrid[row][col] == null) return false;
         return true;
     }
-    
+    public boolean placePlant(Plant plant, int[] location){
+      if ((!isOccupied(location[0], location[1]))){
+        plantGrid[location[0]][location[1]] = plant;
+        return true;
+      }
+      return false;
+        // make it angry and red
+        // what does that even mean
+    }
+
+   public void removePlant(int[] location){
+      if (isOccupied(location[0], location[1])){
+        plantGrid[location[0]][location[1]] = null;
+      }
+    }
+
     public void drawGrid() {
       int cellWidth = 100;
       int cellHeight = 100;
@@ -28,24 +43,11 @@ public class Board {
       }
     }
 
-    public void placePlant(Plant plant, int[] location){
-        if ((!isOccupied(location[0], location[1]))){
-            plantGrid[location[0]][location[1]] = plant;
-        }
-        // make it angry and red
-    }
-
     public void spawnZombie(Zombie zomb, int row){
         zombies.add(zomb);
         // lowk i dont know hwat im doin gnone of this makes sense...
         // add it to the end of the row but we dont know
         zombieRowPos.add();
-    }
-
-    public void removePlant(int[] location){
-        if (isOccupied(location[0], location[1])){
-            plantGrid[location[0]][location[1]] = null;
-        }
     }
 
     public void removeZombie(Zombie zomb){
