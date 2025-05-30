@@ -38,5 +38,6 @@ public class Game {
   public void update() {
     if (mainMenu || pauseScreen || endScreen) return;
     lawn.updatePlants();
+    lawn.updateZombies();
   }
 }
