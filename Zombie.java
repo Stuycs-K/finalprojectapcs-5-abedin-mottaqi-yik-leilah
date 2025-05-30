@@ -9,11 +9,13 @@ public abstract class Zombie implements Displayable{
 
     private int health;
     private final float speed;
-    private Point pos;
+    private double pos;
+    private int row;
     private final int damage;
 
-    public Zombie(Point start,float speed,int health){
-        this.pos=start;
+    public Zombie(int row,float speed,int health){
+        this.row = row;
+        this.pos = width;
         this.speed=speed;
         this.health=health;
     };
@@ -29,12 +31,16 @@ public abstract class Zombie implements Displayable{
     public int getHealth(){
         return health;
     };
-    public Point getPos(){
+    public double getPos(){
         return pos;
     };
 
+    public int getRow(){
+      return row;
+    }
+
     public void move(){
-      pos = pos.move(pos.getX() - 5, pos.getY());
+      pos -= speed;
     }
 
     public void eat(Plant target){

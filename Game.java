@@ -9,13 +9,13 @@ public class Game {
   private Waves current = null;
   private Board lawn;
   private UIManager menu;
-  
+
   private boolean gameMode;
   private boolean mainMenu;
   private boolean pauseScreen;
   private boolean endScreen;
-  
-  
+
+
   public Game(int ScreenWidth, int ScreenHeight, PApplet p) {
     lawn = new Board(5,9,ScreenWidth,ScreenHeight,p);
     Waves level1 = new Waves();

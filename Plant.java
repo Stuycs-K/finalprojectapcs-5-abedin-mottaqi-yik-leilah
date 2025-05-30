@@ -18,7 +18,7 @@ public abstract class Plant implements Displayable{
   public int getHealth(){
     return health;
   }
-  public void takeDamage(int damage){
+  public void updateHealth(int damage){
     if(damage>health){
       health=0;
     }

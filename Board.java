@@ -6,13 +6,13 @@ public class Board {
     // private ArrayList<Double> zombieRowPos; ima be honest I don't think we need this since theres no need to track this seperately
     private ArrayList<Zombie> zombies;
     private PApplet p;
-    
+
     public Board(int rows, int cols, int screenWidth, int screenHeight, PApplet sketch){
       plantGrid = new Plant[rows][cols];
       zombies = new ArrayList<>();
       p = sketch;
     }
-    
+
     public boolean isOccupied(int row, int col){
         if (plantGrid[row][col] == null) return false;
         return true;
@@ -77,6 +77,15 @@ public class Board {
     }
     public void removeZombie(Zombie zomb){
       zombies.remove(zomb);
+    }
+
+    public boolean rowHasZomb(int row){
+      for (int i = 0; i < zombies.size(); i++){
+        if(zombies.get(i).getRow() == row){
+          return true;
+        }
+      }
+      return false;
     }
 
     // we need to make methods to convert a pixel to a cell on the grid so that we can track where the user clicked
