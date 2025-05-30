@@ -2,8 +2,9 @@ import java.util.*;
 import processing.core.PApplet;
 public class Game {
   private ArrayList<Plant> plants = new ArrayList<Plant>();
-  private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
+  private ArrayList<Zombie> zombie = new ArrayList<Zombie>();
   private PlayerSun suns = new PlayerSun();
+  private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
   private ArrayList<Waves> levels = new ArrayList<Waves>();
   private Waves current = null;
   private Board lawn;

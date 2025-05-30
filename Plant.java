@@ -9,7 +9,7 @@ public abstract class Plant implements Displayable{
     this.health=hp;
     this.cost=cost;
   }
-  public Point getPos(){
+  public int[] getPos(){
     return pos;
   }
   public int getCost(){

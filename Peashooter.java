@@ -1,19 +1,36 @@
 import java.awt.Point;
 public class Peashooter extends Plant{
-  private static final int FRAMES = 60;
+  // WHY IS FRAMES 81...
+  private static final int FRAMES = 81;
   private int cooldownTimer = FRAMES;
 
-  public Peashooter(Point cell){
-    super(cell,100,300);
+  public Peashooter(int[] pos){
+    super(pos,300,100);
   }
 
   @Override
   public void update(){
+    // ADD METHOD TO CHECK IF BOARD HAS A ZOMOBIE IN IT
+    while(cooldownTimer > 0 && ){
+      cooldownTimer--;
+    }
+    if ()
+    // if no zombie and cooldown timer is 0, leave it
+    cooldownTimer = (int) (60) * (Math.random() * .15 + 1.35);
   }
 
   @Override
   public void ability(){
     Point spawn = new Point(getPos());
     Projectile pea = new Projectile(spawn,5,20);
+  }
+
+  @Override
+  public void show(){
+
+  }
+  @Override
+  public void hide(){
+
   }
 }
