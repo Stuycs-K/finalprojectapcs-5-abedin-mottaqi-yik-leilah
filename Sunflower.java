@@ -21,8 +21,8 @@ public class Sunflower extends Plant {
     }
 
     private void spawnSun(){
-        Point sunPosition = new Point(getPos().x, getPos().y);
-        NormalSun sun = new NormalSun(sunPosition);
+       // Point sunPosition = new Point(, );
+       // NormalSun sun = new NormalSun(sunPosition);
     }
 
     @Override

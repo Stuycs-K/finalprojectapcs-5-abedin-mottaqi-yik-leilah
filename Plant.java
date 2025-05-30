@@ -10,8 +10,11 @@ public abstract class Plant implements Displayable{
     this.health=hp;
     this.cost=cost;
   }
-  public int[] getPos(){
-    return pos;
+  public int getCol(){
+    return pos[1];
+  }
+  public int getRow(){
+    return pos[0];
   }
   public int getCost(){
     return cost;

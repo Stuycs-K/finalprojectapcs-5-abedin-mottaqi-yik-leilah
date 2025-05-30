@@ -15,14 +15,14 @@ public class Waves {
     }
 
     public ArrayList<Zombie> spawn(){
-      Arraylist<Zombie> spawned = new ArrayList<>();
+      ArrayList<Zombie> spawned = new ArrayList<>();
       timer++;
       while (index < zombieTypes.size() && timer >= spawnTime.get(index)){
-        Zombie type = ZombieTypes.get(index);
+        Zombie type = zombieTypes.get(index);
         int count = zombieCount.get(index);
         for (int i=0; i<count; i++) {
-          Zombie z = type.copy();
-          spawned.add(z);
+          //Zombie z = type.copy();
+          //spawned.add(z);
         }
         index++;
       }

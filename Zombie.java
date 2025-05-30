@@ -1,5 +1,6 @@
 import processing.core.PApplet;
 import java.awt.Point;
+import processing.core.PApplet;
 public abstract class Zombie implements Displayable{
 
     /*
@@ -12,11 +13,12 @@ public abstract class Zombie implements Displayable{
     private final float speed;
     private double pos;
     private int row;
-    private final int damage;
+    private final int damage = 20;
+    private PApplet p;
 
     public Zombie(int row,float speed,int health){
         this.row = row;
-        this.pos = width;
+        this.pos = p.width;
         this.speed=speed;
         this.health=health;
     };
