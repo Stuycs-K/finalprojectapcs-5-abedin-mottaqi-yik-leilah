@@ -4,7 +4,7 @@ public class NormalZombie extends Zombie{
   private static final float defaultSpeed = 1.0f;
 
   public NormalZombie(Point start){
-    super(start,defaultSpeed,defaultHealth);
+    super(start, defaultSpeed, defaultHealth);
     show();
   };
 
