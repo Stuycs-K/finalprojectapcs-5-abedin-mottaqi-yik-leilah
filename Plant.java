@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 import java.awt.Point;
 public abstract class Plant implements Displayable{
   private int cost;

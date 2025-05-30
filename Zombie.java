@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 import java.awt.Point;
 public abstract class Zombie implements Displayable{
 

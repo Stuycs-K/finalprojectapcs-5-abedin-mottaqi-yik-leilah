@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 public interface Interactable extends Displayable{
     void update();
 

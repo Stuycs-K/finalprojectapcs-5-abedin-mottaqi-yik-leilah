@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 import java.awt.Point;
 public class Peashooter extends Plant{
   // WHY IS FRAMES 81...

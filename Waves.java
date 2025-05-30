@@ -1,3 +1,4 @@
+import processing.core.PApplet;
 import java.util.*;
 public class Waves {
     private ArrayList<Zombie> zombieTypes = new ArrayList<Zombie>();
@@ -27,7 +28,7 @@ public class Waves {
       }
       return spawned;
     }
-    
+
     public boolean waveDone(){
       return index >= zombieTypes.size();
     }
