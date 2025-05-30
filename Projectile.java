@@ -11,7 +11,7 @@ public class Projectile{
     this.damage=damage;
   }
   public void update(){
-
+    this.pos.move(pos.getX() + speed, pos.getY());
   }
   public void draw(){
 
