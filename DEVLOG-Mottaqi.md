@@ -24,3 +24,6 @@ fixed code in game class and made a main.pde
 
 ## 2025-05-29-At-Home - fixes, board, getting it to run
 fixed Board a lot, added stuff to Game, worked on main.pde to get it to run, still a lot of errors to be fixed
+
+## 2025-05-30 - fixed typecasting
+fixed many typecasting errors
