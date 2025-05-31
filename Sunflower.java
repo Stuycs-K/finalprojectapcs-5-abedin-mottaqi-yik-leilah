@@ -12,8 +12,8 @@ public class Sunflower extends Plant {
     public void update(){
       cooldown--;
       if(cooldown <= 0){
-        int px = col * 100 + 50;
-        int py = row * 100 + 50;
+        int px = getCol() * 100 + 50;
+        int py = getRow() * 100 + 50;
         gameRef.spawnSun(new Point(px, py));
         cooldown = 1440; // every 24 seconds
       }

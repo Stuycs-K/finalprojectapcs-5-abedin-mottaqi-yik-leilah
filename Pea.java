@@ -14,7 +14,6 @@ public class Pea extends Projectile {
 
     public void show(PApplet p){
         p.fill(50, 200, 50);
-        p.ellipse(x, y, 15, 15);
+        p.ellipse(getX(), getY(), 15, 15);
     }
 }
-
