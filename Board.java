@@ -1,25 +1,21 @@
 import processing.core.PApplet;
-import java.util.*;
 public class Board {
     private Plant[][] plantGrid;
-    // he said to use smth else for zombies bc they wont really be on a grid
-    // private ArrayList<Double> zombieRowPos; ima be honest I don't think we need this since theres no need to track this seperately
-    private ArrayList<Zombie> zombies;
+    private int cellWidth = 100; // how wide each cell is
+    private int cellHeight = 100; // how tall each cell is
+    // i removed all the zombie stuff for testing, will add back later
     private PApplet p;
 
-    public Board(int rows, int cols, int screenWidth, int screenHeight, PApplet sketch){
+    public Board(int rows, int cols, int screenWidth, int screenHeight, PApplet p){
       plantGrid = new Plant[rows][cols];
-      zombies = new ArrayList<>();
-      p = sketch;
+      this.p = p;
     }
 
-    public boolean isOccupied(int row, int col){
-        if (plantGrid[row][col] == null) return false;
-        return true;
-    }
-    public boolean placePlant(Plant plant, int[] location){
-      if ((!isOccupied(location[0], location[1]))){
-        plantGrid[location[0]][location[1]] = plant;
+    // removed isOccupied method since we can just check if its null instead
+
+    public boolean placePlant(Plant plant, int[] cell){
+      if (plantGrid[cell[0]][cell[1]] == null){
+        plantGrid[cell[0]][cell[1]] = plant;
         return true;
       }
       return false;
@@ -27,44 +23,34 @@ public class Board {
         // what does that even mean
     }
 
+   /* i will implement this later 
    public void removePlant(int[] location){
       if (isOccupied(location[0], location[1])){
         plantGrid[location[0]][location[1]] = null;
       }
-    }
+    } */
 
-    // do we need an updatePlants method...?
-    // idk this is supposed to update any plants that are interactable if i know what i'm doing
     public void updatePlants(){
       for (int r=0;r<plantGrid.length;r++){
         for (int c=0;c<plantGrid[0].length;c++){
-          if (plantGrid[r][c] instanceof Interactable){
-            ((Interactable)plantGrid[r][c]).update();
+          if (plantGrid[r][c] != null){
+            plantGrid[r][c].update();
           }
         }
       }
     }
-
-    public void updateZombies(){
-      for (int i = 0; i < zombies.size(); i++){
-        zombies.get(i).move();
-      }
-    }
-
     // this should draw all plants currently on the board;
     public void drawPlants(){
       for (int r=0;r<plantGrid.length;r++){
         for (int c=0;c<plantGrid[0].length;c++){
           if (plantGrid[r][c] != null){
-            plantGrid[r][c].show();
+            plantGrid[r][c].show(p);
           }
         }
       }
     }
 
     public void drawGrid() {
-      int cellWidth = 100;
-      int cellHeight = 100;
       for (int r=0;r<plantGrid.length;r++){
         for (int c=0;c<plantGrid[0].length;c++){
           p.stroke(0);
@@ -74,25 +60,13 @@ public class Board {
       }
     }
 
-    public void spawnZombie(Zombie zomb, int row){
-      zombies.add(zomb);
-    }
-
-    public ArrayList<Zombie> getZombies(){
-      return zombies;
-    }
-    public void removeZombie(Zombie zomb){
-      zombies.remove(zomb);
-    }
-
-    public boolean rowHasZomb(int row){
-      for (int i = 0; i < zombies.size(); i++){
-        if(zombies.get(i).getRow() == row){
-          return true;
-        }
+    // convert pixel coordinates to cell coordinates
+    public int[] pixelToCell(int x, int y){
+      int row = y/cellHeight;
+      int col = x/cellWidth;
+      if (row >= 0 && row < plantGrid.length && col >= 0 && col < plantGrid[0].length){
+        return new int[]{row,col};
       }
-      return false;
+      return null;
     }
-
-    // we need to make methods to convert a pixel to a cell on the grid so that we can track where the user clicked
 }
