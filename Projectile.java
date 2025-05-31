@@ -20,6 +20,20 @@ public abstract class Projectile implements Displayable{
     return damage;
   }
 
+  public float getSpeed() {
+      return speed;
+  }
+  public float getX(){
+    return x;
+  }
+
+  public float getY(){
+    return y;
+  }
+
+  public void addX(float s){
+    x+=s;
+  }
   public void markRemoval(){
     remove = true;
   }

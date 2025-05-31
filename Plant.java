@@ -10,6 +10,15 @@ public abstract class Plant implements Displayable, Interactable{
     this.row=row; // lets use row and col instead of point since plants dont need to move smoothly
     this.col=col;
   }
+  
+  public int getRow(){
+    return row;
+  }
+
+  public int getCol(){
+    return col;
+  }
+
   public Point getPos(){
     return new Point(col * 100 + 50, row * 100 + 50); // will need this for collision with zombie later
   }
