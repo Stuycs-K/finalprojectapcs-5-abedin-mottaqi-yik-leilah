@@ -25,6 +25,11 @@ public abstract class Zombie implements Displayable{
     public int getHealth(){
         return health;
     };
+
+    public void addX(float s){
+        x+=s;
+    };
+
     public float getX(){
         return x;
     };
