@@ -1,28 +1,41 @@
-import processing.core.PApplet;
 import java.awt.Point;
-public abstract class Plant implements Displayable{
-  private int cost;
-  private int health;
-  private int[] pos;
+import processing.core.PApplet;
+public abstract class Plant implements Displayable, Interactable{
+  // private int cost; gonna remove for now, trying to make a functioning game
+  // private int health; gonna remove for now, trying to make a functioning game
+  private int row, col;
+  private boolean remove = false; // having a boolean 'remove' might be easier, could change later, just trying to make game work 
 
-  public Plant(int[] pos,int hp,int cost){
-    this.pos=pos;
-    this.health=hp;
-    this.cost=cost;
+  public Plant(int row, int col){
+    this.row=row; // lets use row and col instead of point since plants dont need to move smoothly
+    this.col=col;
   }
-  public int getCol(){
-    return pos[1];
+  public Point getPos(){
+    return new Point(col * 100 + 50, row * 100 + 50); // will need this for collision with zombie later
   }
-  public int getRow(){
-    return pos[0];
+
+  public boolean clicked(int mouseX, int mouseY){
+    return Math.abs(mouseX - getPos().x) < 40 && Math.abs(mouseY - getPos().y) < 40;
   }
+
+  public void onClick(){
+    remove = true;
+  }
+
+  public boolean shouldRemove(){
+    return remove;
+  }
+
+  public abstract void update();
+  public abstract void show(PApplet p);
+  /* gonna remove for now, trying to make a functioning game 
   public int getCost(){
     return cost;
-  }
+  } 
   public int getHealth(){
     return health;
   }
-  public void updateHealth(int damage){
+  public void takeDamage(int damage){
     if(damage>health){
       health=0;
     }
@@ -30,4 +43,5 @@ public abstract class Plant implements Displayable{
   }
   public abstract void update();
   public abstract void ability();
+  */ 
 }
