@@ -1,20 +1,19 @@
 import processing.core.PApplet;
 import java.awt.Point;
 public class NormalZombie extends Zombie{
-  private static final int defaultHealth = 200;
-  private static final float defaultSpeed = 1.0f;
+  private float speed = 0.5f; // made slower for testing
 
-  public NormalZombie(int row){
-    super(row, defaultSpeed, defaultHealth);
-    show();
+  public NormalZombie(Point start){
+    super(start,100); // 100 HP
   };
 
   @Override
-  public void show() {
-
+  public void update() {
+    addX(-speed);
   }
   @Override
-  public void hide() {
-
+  public void show(PApplet p) {
+    p.fill(100, 150, 100);
+    p.rect(getX() - 20, getY() - 40, 40, 80);
   }
 }

@@ -1,4 +1,3 @@
-import processing.core.PApplet;
 import java.awt.Point;
 import processing.core.PApplet;
 public abstract class Zombie implements Displayable{
@@ -10,38 +9,42 @@ public abstract class Zombie implements Displayable{
      */
 
     private int health;
-    private final float speed;
-    private double pos;
-    private int row;
-    private final int damage = 20;
-    private PApplet p;
+    // private final float speed; gonna remove for now, trying to make a functioning game
+    private float x,y;
+    // private int row; gonna remove for now, trying to make a functioning game
+    // private final int damage = 20; gonna remove for now, trying to make a functioning game
 
-    public Zombie(int row,float speed,int health){
-        this.row = row;
-        this.pos = p.width;
-        this.speed=speed;
+    public Zombie(Point pos,int health){
+        this.x = pos.x;
+        this.y = pos.y;
         this.health=health;
     };
     public void takeDamage(int dmg){
-        if (dmg>health){
-            health=0;
-        };
-        health-=dmg;
-        if (health==0){
-            hide();
-        };
+      health -= dmg;
     };
     public int getHealth(){
         return health;
     };
-    public double getPos(){
-        return pos;
+
+    public void addX(float s){
+        x+=s;
     };
 
-    public int getRow(){
-      return row;
+    public float getX(){
+        return x;
+    };
+
+    public float getY(){
+      return y;
     }
 
+    public Point getPos(){
+      return new Point((int)x,(int)y);
+    }
+
+    public abstract void update();
+    public abstract void show(PApplet p);
+    /* gonna remove for now, trying to make a functioning game
     public void move(){
       pos -= speed;
     }
@@ -50,7 +53,8 @@ public abstract class Zombie implements Displayable{
       target.updateHealth(damage);
     }
 
+
     private void die(){
       hide();
-    }
+    } */
 }
