@@ -15,7 +15,7 @@ public class Sunflower extends Plant {
         int px = col * 100 + 50;
         int py = row * 100 + 50;
         gameRef.spawnSun(new Point(px, py));
-        cooldown = 300; // every 5 seconds
+        cooldown = 1440; // every 24 seconds
       }
     }
     @Override
