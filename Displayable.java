@@ -1,9 +1,8 @@
 import processing.core.PApplet;
 import java.awt.Point;
 
-interface Displayable {
-
-    void show();
-
-    void hide();
+public interface Displayable {
+    void show(PApplet p);
+    Point getPos();
+    // Removed hide, since it's useless
 }
