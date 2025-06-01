@@ -10,9 +10,11 @@ public class Game {
   private PlayerSun suns = new PlayerSun();
   //private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
   //private ArrayList<Waves> levels = new ArrayList<Waves>(); removed for now for testing
-  //private Waves current = null; removed for now for testing
+  private Waves waves;
   private Board board;
-  //private UIManager menu; removed for now for testing
+  private UIManager menu;
+  private String selectedPlant = "Sunflower";
+
   private PApplet p;
 
   /* removed for now for testing
@@ -28,6 +30,7 @@ public class Game {
     this.p = p;
     Peashooter.setGame(this); // need these for now to make work
     Sunflower.setGame(this); 
+    this.menu = new UIManager(p);
     /* removed for now for testing
     for (int i=0; i<5; i++) {
       level1.addWave(1, new NormalZombie(new Point(screenWidth, i * 100)), 60*i); // should spawn 1 zombie every second i think
@@ -35,9 +38,13 @@ public class Game {
     levels.add(level1); */
   }
   public void startLevel(int idx){
-    // for now, spawn one test zombie
-    zombies.add(new NormalZombie(new Point(850, 100)));
-    
+    // one wave of 5 normalZombies, randomly spawning
+    waves = new Waves();
+    for (int i = 0; i < 5; i++) {
+      int row = (int) (Math.random() * 5);
+      Point spawnPos = new Point(p.width,row * 100 + 40);
+      waves.addZombie(i*120,new NormalZombie(spawnPos));
+    }
     /* removed for now for testing
     if (idx>=0 && idx<levels.size()) {
       currentWave = levels.get(idx);
@@ -51,6 +58,11 @@ public class Game {
   }
   public void update() {
     board.updatePlants();
+
+    if (waves != null){
+      ArrayList<Zombie> newZombies = waves.update();
+      for (Zombie z: newZombies) zombies.add(z);
+    }
 
     for (Zombie z: zombies) z.update();
     for (Projectile pr: projectiles) pr.update();
@@ -100,6 +112,11 @@ public class Game {
         projectiles.remove(i);
       }
     }
+
+    // logic for when wave is complete
+    if (waves != null && waves.isDone() && zombies.isEmpty()) {
+      menu.setInWinScreen(true);
+    }
   }
 
   public void render() {
@@ -109,10 +126,48 @@ public class Game {
     for (Projectile pr: projectiles) pr.show(p);
     for (NormalSun sun: sunObjects) sun.show(p);
 
-    // sun balance display
+    if (menu.inMainMenu()) {
+      menu.showMainMenu();
+      return;
+    }
+    if (menu.inPauseMenu()) {
+      menu.showPauseScreen();
+      return;
+    }
+    if (menu.inGameOver()) {
+      menu.showGameOverScreen();
+      return;
+    }
+    if (menu.inWinScreen()) {
+      menu.showWinScreen();
+      return;
+    }
+
+    // drawing buttons here for now, will move to UIManager later
+    if (selectedPlant.equals("Sunflower")) {
+      p.fill(p.color(255, 255, 100));
+    } else {
+      p.fill(200);
+    }
+    p.rect(10,50,100,40);
+    p.fill(0);
+    p.textSize(16);
+    p.text("Sunflower", 60, 70);
+
+    if (selectedPlant.equals("Peashooter")) {
+      p.fill(p.color(100, 255, 100));
+    } else {
+      p.fill(200);
+    }
+    p.rect(120,50,100,40);
+    p.fill(0);
+    p.textSize(16);
+    p.text("Peashooter", 170, 70);
+
+    // sun balance display will move to UIManager later
     p.fill(0);
     p.textSize(24);
-    p.text("Sun: " + suns.getBalance(), 10, 30);
+    p.text("Sun: " + suns.getBalance(), 50, 30);
   }
 
   // method to handle mouse clicks
@@ -125,7 +180,23 @@ public class Game {
         return;
       }
     }
-    
+
+    if (menu.inMainMenu()) {
+      menu.setInMainMenu(false);
+      startLevel(0);
+      return;
+    }
+
+    if (y >= 50 && y <= 90) {
+      if (x >= 10 && x <= 110) {
+        selectedPlant = "Sunflower";
+        return;
+      } else if (x >= 120 && x <= 220) {
+        selectedPlant = "Peashooter";
+        return;
+      }
+    }
+
     /*// converting pixel to cell
     int[] cell = board.pixelToCell(x, y);
     if (cell == null) return;
@@ -152,12 +223,12 @@ public class Game {
 
       int[] cell = board.pixelToCell(x, y);
         if (cell != null) {
-            // Example logic: left 1/2 of screen = sunflower, right = peashooter
-            if (x < p.width / 2 && suns.spendSun(50)) {
+            // left half of screen = sunflower, right = peashooter, bad logic but will fix
+            if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
                 Sunflower flower = new Sunflower(cell[0], cell[1]);
                 board.placePlant(flower, cell);
                 plants.add(flower);
-            } else if (x >= p.width / 2 && suns.spendSun(10)) {
+            } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
                 Peashooter shooter = new Peashooter(cell[0], cell[1]);
                 board.placePlant(shooter, cell);
                 plants.add(shooter);
