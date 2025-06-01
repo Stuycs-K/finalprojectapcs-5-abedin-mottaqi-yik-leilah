@@ -197,43 +197,18 @@ public class Game {
       }
     }
 
-    /*// converting pixel to cell
     int[] cell = board.pixelToCell(x, y);
-    if (cell == null) return;
-    int row = cell[0];
-    int col = cell[1];
-
-    // mouse button logic
-    if (button == PConstants.LEFT) {
-      // place peashooter on left click
-      if (suns.spendSun(100)) {
-        Peashooter shooter = new Peashooter(row, col);
-        board.placePlant(shooter, cell);
-        plants.add(shooter);
+      if (cell != null) {
+          if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
+              Sunflower flower = new Sunflower(cell[0], cell[1]);
+              board.placePlant(flower, cell);
+              plants.add(flower);
+          } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
+              Peashooter shooter = new Peashooter(cell[0], cell[1]);
+              board.placePlant(shooter, cell);
+              plants.add(shooter);
+          }
       }
-      // place sunflower on right click
-      else if (button == PConstants.RIGHT) {
-        if (suns.spendSun(50)) {
-          Sunflower flower = new Sunflower(row, col);
-          board.placePlant(flower, cell);
-          plants.add(flower);
-        }
-      }
-    }*/
-
-      int[] cell = board.pixelToCell(x, y);
-        if (cell != null) {
-            // left half of screen = sunflower, right = peashooter, bad logic but will fix
-            if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
-                Sunflower flower = new Sunflower(cell[0], cell[1]);
-                board.placePlant(flower, cell);
-                plants.add(flower);
-            } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
-                Peashooter shooter = new Peashooter(cell[0], cell[1]);
-                board.placePlant(shooter, cell);
-                plants.add(shooter);
-            }
-        }
   }
 
   public void addProjectile(Projectile pr) {
