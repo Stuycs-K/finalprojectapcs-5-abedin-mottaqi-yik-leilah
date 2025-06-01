@@ -10,7 +10,7 @@ public class Game {
   private PlayerSun suns = new PlayerSun();
   //private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
   //private ArrayList<Waves> levels = new ArrayList<Waves>(); removed for now for testing
-  //private Waves current = null; removed for now for testing
+  private Waves waves;
   private Board board;
   //private UIManager menu; removed for now for testing
   private PApplet p;
@@ -35,9 +35,13 @@ public class Game {
     levels.add(level1); */
   }
   public void startLevel(int idx){
-    // for now, spawn one test zombie
-    zombies.add(new NormalZombie(new Point(850, 100)));
-    
+    // one wave of 5 normalZombies, randomly spawning
+    waves = new Waves();
+    for (int i = 0; i < 5; i++) {
+      int row = (int) (Math.random() * 5);
+      Point spawnPos = new Point(p.width,row * 100 + 40);
+      waves.addZombie(i*120,new NormalZombie(spawnPos));
+    }
     /* removed for now for testing
     if (idx>=0 && idx<levels.size()) {
       currentWave = levels.get(idx);
@@ -51,6 +55,11 @@ public class Game {
   }
   public void update() {
     board.updatePlants();
+
+    if (waves != null){
+      ArrayList<Zombie> newZombies = waves.update();
+      for (Zombie z: newZombies) zombies.add(z);
+    }
 
     for (Zombie z: zombies) z.update();
     for (Projectile pr: projectiles) pr.update();
@@ -99,6 +108,13 @@ public class Game {
       if (pr.shouldRemove()) {
         projectiles.remove(i);
       }
+    }
+
+    // logic for when wave is complete
+    if (waves != null && waves.isDone() && zombies.isEmpty()) {
+    // all zombies spawned and defeated — level complete
+      System.out.println("Level complete!");
+    // add win screen here
     }
   }
 
@@ -152,7 +168,7 @@ public class Game {
 
       int[] cell = board.pixelToCell(x, y);
         if (cell != null) {
-            // Example logic: left 1/2 of screen = sunflower, right = peashooter
+            // left half of screen = sunflower, right = peashooter
             if (x < p.width / 2 && suns.spendSun(50)) {
                 Sunflower flower = new Sunflower(cell[0], cell[1]);
                 board.placePlant(flower, cell);
