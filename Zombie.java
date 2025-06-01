@@ -16,7 +16,7 @@ public abstract class Zombie implements Displayable{
 
     public Zombie(Point pos,int health){
         this.x = pos.x;
-        this.y = pos.y;
+        this.y = pos.y+100;
         this.health=health;
     };
     public void takeDamage(int dmg){

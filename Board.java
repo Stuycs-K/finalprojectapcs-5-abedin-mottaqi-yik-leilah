@@ -64,6 +64,7 @@ public class Board {
 
     // convert pixel coordinates to cell coordinates
     public int[] pixelToCell(int x, int y){
+      y -= topMargin;
       int row = y/cellHeight;
       int col = x/cellWidth;
       if (row >= 0 && row < plantGrid.length && col >= 0 && col < plantGrid[0].length){
