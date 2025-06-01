@@ -3,6 +3,7 @@ public class Board {
     private Plant[][] plantGrid;
     private int cellWidth = 100; // how wide each cell is
     private int cellHeight = 100; // how tall each cell is
+    private int topMargin = 100;
     // i removed all the zombie stuff for testing, will add back later
     private PApplet p;
 
@@ -11,7 +12,9 @@ public class Board {
       this.p = p;
     }
 
-    // removed isOccupied method since we can just check if its null instead
+    public boolean isOccupied(int row, int col){
+      return plantGrid[row][col] != null;
+    }
 
     public boolean placePlant(Plant plant, int[] cell){
       if (plantGrid[cell[0]][cell[1]] == null){
@@ -23,12 +26,11 @@ public class Board {
         // what does that even mean
     }
 
-   /* i will implement this later 
-   public void removePlant(int[] location){
+    public void removePlant(int[] location){
       if (isOccupied(location[0], location[1])){
         plantGrid[location[0]][location[1]] = null;
       }
-    } */
+    }
 
     public void updatePlants(){
       for (int r=0;r<plantGrid.length;r++){
@@ -55,7 +57,7 @@ public class Board {
         for (int c=0;c<plantGrid[0].length;c++){
           p.stroke(0);
           p.fill(100,200,100);
-          p.rect(c*cellWidth,r*cellHeight,cellWidth,cellHeight);
+          p.rect(c*cellWidth,r*cellHeight+topMargin,cellWidth,cellHeight);
         }
       }
     }
