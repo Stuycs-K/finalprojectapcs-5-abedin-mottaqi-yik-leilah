@@ -57,6 +57,9 @@ public class Game {
     }*/
   }
   public void update() {
+    // check if in menu, pause, or end screen
+    if (menu.anyOverlayActive()) return;
+
     board.updatePlants();
 
     if (waves != null){
@@ -110,6 +113,16 @@ public class Game {
       Projectile pr = projectiles.get(i);
       if (pr.shouldRemove()) {
         projectiles.remove(i);
+      }
+
+    
+    }
+    
+    // check if game is over
+    for (Zombie z: zombies) {
+      if (z.getX() <= 0) {
+        menu.setInGameOver(true);
+        return;
       }
     }
 
@@ -217,5 +230,13 @@ public class Game {
 
   public void spawnSun(Point spawn) {
     sunObjects.add(new NormalSun(spawn));
+  }
+
+  public void togglePause() {
+    if (menu.inPauseMenu()) {
+      menu.setInPauseMenu(false);
+    } else {
+      menu.setInPauseMenu(true);
+    }
   }
 }
