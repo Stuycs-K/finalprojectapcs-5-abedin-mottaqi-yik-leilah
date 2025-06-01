@@ -12,7 +12,7 @@ public class Game {
   //private ArrayList<Waves> levels = new ArrayList<Waves>(); removed for now for testing
   private Waves waves;
   private Board board;
-  //private UIManager menu; removed for now for testing
+  private UIManager menu;
   private PApplet p;
 
   /* removed for now for testing
@@ -28,6 +28,7 @@ public class Game {
     this.p = p;
     Peashooter.setGame(this); // need these for now to make work
     Sunflower.setGame(this); 
+    this.menu = new UIManager(p);
     /* removed for now for testing
     for (int i=0; i<5; i++) {
       level1.addWave(1, new NormalZombie(new Point(screenWidth, i * 100)), 60*i); // should spawn 1 zombie every second i think
@@ -112,9 +113,7 @@ public class Game {
 
     // logic for when wave is complete
     if (waves != null && waves.isDone() && zombies.isEmpty()) {
-    // all zombies spawned and defeated — level complete
-      System.out.println("Level complete!");
-    // add win screen here
+      menu.setInWinScreen(true);
     }
   }
 
@@ -124,6 +123,23 @@ public class Game {
     for (Zombie z: zombies) z.show(p);
     for (Projectile pr: projectiles) pr.show(p);
     for (NormalSun sun: sunObjects) sun.show(p);
+
+    if (menu.inMainMenu()) {
+      menu.showMainMenu();
+      return;
+    }
+    if (menu.inPauseMenu()) {
+      menu.showPauseScreen();
+      return;
+    }
+    if (menu.inGameOver()) {
+      menu.showGameOverScreen();
+      return;
+    }
+    if (menu.inWinScreen()) {
+      menu.showWinScreen();
+      return;
+    }
 
     // sun balance display
     p.fill(0);
@@ -141,7 +157,13 @@ public class Game {
         return;
       }
     }
-    
+
+    if (menu.inMainMenu()) {
+      menu.setInMainMenu(false);
+      startLevel(0);
+      return;
+    }
+
     /*// converting pixel to cell
     int[] cell = board.pixelToCell(x, y);
     if (cell == null) return;
@@ -168,7 +190,7 @@ public class Game {
 
       int[] cell = board.pixelToCell(x, y);
         if (cell != null) {
-            // left half of screen = sunflower, right = peashooter
+            // left half of screen = sunflower, right = peashooter, bad logic but will fix
             if (x < p.width / 2 && suns.spendSun(50)) {
                 Sunflower flower = new Sunflower(cell[0], cell[1]);
                 board.placePlant(flower, cell);
