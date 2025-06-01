@@ -1,9 +1,8 @@
 Game game;
 
 void setup() {
-  size(900, 500);
+  size(950, 600);
   game = new Game(width, height, this);
-  game.startLevel(0);
 }
 
 void draw() {
@@ -14,4 +13,10 @@ void draw() {
 
 void mousePressed() {
   game.handleClick(mouseX, mouseY,mouseButton);
+}
+
+void keyPressed() {
+  if (key == 'P' || key == 'p') {
+    game.togglePause();
+  }
 }

@@ -20,7 +20,7 @@ public abstract class Plant implements Displayable, Interactable{
   }
 
   public Point getPos(){
-    return new Point(col * 100 + 50, row * 100 + 50); // will need this for collision with zombie later
+    return new Point(col * 100 + 50, row * 100 + 50 + 100); // will need this for collision with zombie later
   }
 
   public boolean clicked(int mouseX, int mouseY){

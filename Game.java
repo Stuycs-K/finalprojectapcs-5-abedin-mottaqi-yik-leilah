@@ -14,6 +14,9 @@ public class Game {
   private Board board;
   private UIManager menu;
   private String selectedPlant = "Sunflower";
+  private boolean shovelMode = false;
+  private int sunTimer = 0;
+
 
   private PApplet p;
 
@@ -57,11 +60,20 @@ public class Game {
     }*/
   }
   public void update() {
+    // check if in menu, pause, or end screen
+    if (menu.anyOverlayActive()) return;
+
     board.updatePlants();
 
     if (waves != null){
       ArrayList<Zombie> newZombies = waves.update();
       for (Zombie z: newZombies) zombies.add(z);
+    }
+
+    sunTimer++;
+    if (sunTimer >= 480) {
+      spawnSun(null);
+      sunTimer = 0;
     }
 
     for (Zombie z: zombies) z.update();
@@ -110,6 +122,16 @@ public class Game {
       Projectile pr = projectiles.get(i);
       if (pr.shouldRemove()) {
         projectiles.remove(i);
+      }
+
+    
+    }
+    
+    // check if game is over
+    for (Zombie z: zombies) {
+      if (z.getX() <= 0) {
+        menu.setInGameOver(true);
+        return;
       }
     }
 
@@ -164,6 +186,16 @@ public class Game {
     p.textSize(16);
     p.text("Peashooter", 170, 70);
 
+    if (shovelMode){
+      p.fill(p.color(255, 100, 100));
+    } else {
+      p.fill(200);
+    }
+    p.rect(230,50,100,40);
+    p.fill(0);
+    p.textSize(16);
+    p.text("Shovel", 280, 70);
+
     // sun balance display will move to UIManager later
     p.fill(0);
     p.textSize(24);
@@ -194,21 +226,31 @@ public class Game {
       } else if (x >= 120 && x <= 220) {
         selectedPlant = "Peashooter";
         return;
+      } else if (x >= 230 && x <= 330) {
+        toggleShovel();
+        return;
       }
     }
 
     int[] cell = board.pixelToCell(x, y);
-      if (cell != null) {
-          if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
-              Sunflower flower = new Sunflower(cell[0], cell[1]);
-              board.placePlant(flower, cell);
-              plants.add(flower);
-          } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
-              Peashooter shooter = new Peashooter(cell[0], cell[1]);
-              board.placePlant(shooter, cell);
-              plants.add(shooter);
-          }
+    
+    if (cell != null) {
+      if (shovelMode) {
+        board.removePlant(cell);
+        shovelMode = false;
+        return;
+      }  
+
+      if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
+          Sunflower flower = new Sunflower(cell[0], cell[1]);
+          board.placePlant(flower, cell);
+          plants.add(flower);
+      } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
+          Peashooter shooter = new Peashooter(cell[0], cell[1]);
+          board.placePlant(shooter, cell);
+          plants.add(shooter);
       }
+    }
   }
 
   public void addProjectile(Projectile pr) {
@@ -216,6 +258,22 @@ public class Game {
   }
 
   public void spawnSun(Point spawn) {
-    sunObjects.add(new NormalSun(spawn));
+    if (spawn == null) {
+      sunObjects.add(new NormalSun());
+    } else {
+      sunObjects.add(new NormalSun(spawn));
+    }
+  }
+
+  public void togglePause() {
+    if (menu.inPauseMenu()) {
+      menu.setInPauseMenu(false);
+    } else {
+      menu.setInPauseMenu(true);
+    }
+  }
+
+  public void toggleShovel(){
+    shovelMode = !shovelMode;
   }
 }

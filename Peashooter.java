@@ -16,7 +16,7 @@ public class Peashooter extends Plant{
   public void update(){
     cooldown--;
     if(cooldown <= 0){
-      Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50);
+      Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50 + 100);
       Pea pea = new Pea(peaStart);
       gameRef.addProjectile(pea);
       cooldown = 60;
@@ -49,7 +49,8 @@ public class Peashooter extends Plant{
 
   @Override
   public void show(PApplet p){
+    Point pos = getPos();
     p.fill(0, 255, 0);
-    p.ellipse(getCol() * 100 + 50, getRow() * 100 + 50, 40, 40); 
+    p.ellipse(getCol() * 100 + 50, getRow() * 100 + 50 + 100, 40, 40); 
   }
 }

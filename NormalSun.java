@@ -3,7 +3,6 @@ import java.awt.Point;
 public class NormalSun implements Displayable, Interactable {
     private float x,y;
     private boolean collected = false;
-    // private int finalRow; gonna remove for now, trying to make a functioning game
     /*
      * notes:
      * - sun spawns roughly every 8 seconds
@@ -11,12 +10,18 @@ public class NormalSun implements Displayable, Interactable {
      * - sunflower production rate is every 24 seconds
      */
 
-    public NormalSun(Point spawn){
+    // random spawning
+    public NormalSun(){
         // spawn in random location on lawn
-        int row = (int)(Math.random() * 5);
         int col = (int)(Math.random() * 9);
-        this.x = col * 50 + 25;
-        this.y = row * 50 + 25;
+        this.x = col * 100 + 50;
+        this.y = -10;
+    }
+
+    // sunflower spawning
+    public NormalSun(Point spawn){
+        this.x = spawn.x;
+        this.y = spawn.y;
     }
     @Override
     public void show(PApplet p) {
