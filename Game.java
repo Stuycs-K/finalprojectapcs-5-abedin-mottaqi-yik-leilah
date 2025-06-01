@@ -13,6 +13,8 @@ public class Game {
   private Waves waves;
   private Board board;
   private UIManager menu;
+  private String selectedPlant = "Sunflower";
+
   private PApplet p;
 
   /* removed for now for testing
@@ -141,10 +143,31 @@ public class Game {
       return;
     }
 
-    // sun balance display
+    // drawing buttons here for now, will move to UIManager later
+    if (selectedPlant.equals("Sunflower")) {
+      p.fill(p.color(255, 255, 100));
+    } else {
+      p.fill(200);
+    }
+    p.rect(10,50,100,40);
+    p.fill(0);
+    p.textSize(16);
+    p.text("Sunflower", 60, 70);
+
+    if (selectedPlant.equals("Peashooter")) {
+      p.fill(p.color(100, 255, 100));
+    } else {
+      p.fill(200);
+    }
+    p.rect(120,50,100,40);
+    p.fill(0);
+    p.textSize(16);
+    p.text("Peashooter", 170, 70);
+
+    // sun balance display will move to UIManager later
     p.fill(0);
     p.textSize(24);
-    p.text("Sun: " + suns.getBalance(), 10, 30);
+    p.text("Sun: " + suns.getBalance(), 50, 30);
   }
 
   // method to handle mouse clicks
@@ -162,6 +185,16 @@ public class Game {
       menu.setInMainMenu(false);
       startLevel(0);
       return;
+    }
+
+    if (y >= 50 && y <= 90) {
+      if (x >= 10 && x <= 110) {
+        selectedPlant = "Sunflower";
+        return;
+      } else if (x >= 120 && x <= 220) {
+        selectedPlant = "Peashooter";
+        return;
+      }
     }
 
     /*// converting pixel to cell
@@ -191,11 +224,11 @@ public class Game {
       int[] cell = board.pixelToCell(x, y);
         if (cell != null) {
             // left half of screen = sunflower, right = peashooter, bad logic but will fix
-            if (x < p.width / 2 && suns.spendSun(50)) {
+            if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
                 Sunflower flower = new Sunflower(cell[0], cell[1]);
                 board.placePlant(flower, cell);
                 plants.add(flower);
-            } else if (x >= p.width / 2 && suns.spendSun(10)) {
+            } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
                 Peashooter shooter = new Peashooter(cell[0], cell[1]);
                 board.placePlant(shooter, cell);
                 plants.add(shooter);
