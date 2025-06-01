@@ -14,6 +14,8 @@ public class Game {
   private Board board;
   private UIManager menu;
   private String selectedPlant = "Sunflower";
+  private int sunTimer = 0;
+
 
   private PApplet p;
 
@@ -65,6 +67,12 @@ public class Game {
     if (waves != null){
       ArrayList<Zombie> newZombies = waves.update();
       for (Zombie z: newZombies) zombies.add(z);
+    }
+
+    sunTimer++;
+    if (sunTimer >= 480) {
+      spawnSun(null);
+      sunTimer = 0;
     }
 
     for (Zombie z: zombies) z.update();
@@ -229,7 +237,11 @@ public class Game {
   }
 
   public void spawnSun(Point spawn) {
-    sunObjects.add(new NormalSun(spawn));
+    if (spawn == null) {
+      sunObjects.add(new NormalSun());
+    } else {
+      sunObjects.add(new NormalSun(spawn));
+    }
   }
 
   public void togglePause() {
