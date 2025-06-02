@@ -233,9 +233,11 @@ public class Game {
           newPlant = new Peashooter(cell[0], cell[1]);
       }
 
-      if (newPlant != null && suns.spendSun(newPlant.getCost())) {
-        if (board.placePlant(newPlant, cell)) {
-          plants.add(newPlant);
+      if (newPlant != null && !board.isOccupied(cell[0], cell[1])){ 
+        if (suns.spendSun(newPlant.getCost())) {
+          if (board.placePlant(newPlant, cell)) {
+            plants.add(newPlant);
+          }
         }
       }
     }

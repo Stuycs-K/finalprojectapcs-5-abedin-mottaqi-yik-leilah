@@ -7,7 +7,7 @@ public class NormalZombie extends Zombie{
   private int damage = 100;
 
   public NormalZombie(Point start){
-    super(start,181);
+    super(start,180);
   };
 
   @Override
