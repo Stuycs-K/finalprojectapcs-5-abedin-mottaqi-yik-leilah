@@ -1,11 +1,6 @@
 import processing.core.PApplet;
 import java.awt.Point;
 public class Peashooter extends Plant{
-  // WHY IS FRAMES 81...
-  // private static final int FRAMES = 81; gonna remove for now, trying to make a functioning game
-  // private int cooldownTimer = FRAMES; gonna remove for now, trying to make a functioning game
-  // private Board b; gonna remove for now, trying to make a functioning game
-
   private int shootCooldown = 0;
   private static Game gameRef; // need this for now to make it run properly
   private int damage = 20;

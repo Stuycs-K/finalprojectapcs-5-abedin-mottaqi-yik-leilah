@@ -9,7 +9,6 @@ public class Game {
   private ArrayList<NormalSun> sunObjects = new ArrayList<>();
   private PlayerSun suns = new PlayerSun();
   //private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
-  //private ArrayList<Waves> levels = new ArrayList<Waves>(); removed for now for testing
   private Waves waves;
   private Board board;
   private UIManager menu;
@@ -20,13 +19,6 @@ public class Game {
 
 
   private PApplet p;
-
-  /* removed for now for testing
-  private boolean gameMode;
-  private boolean mainMenu;
-  private boolean pauseScreen;
-  private boolean endScreen; */
-
 
   public Game(int ScreenWidth, int ScreenHeight, PApplet p) {
     board = new Board(5,9,ScreenWidth,ScreenHeight,p);
@@ -43,12 +35,22 @@ public class Game {
     levels.add(level1); */
   }
   public void startLevel(int idx){
-    // one wave of 5 normalZombies, randomly spawning
     waves = new Waves();
-    for (int i = 0; i < 5; i++) {
-      int row = (int) (Math.random() * 5);
-      Point spawnPos = new Point(p.width,row * 100 + 40);
-      waves.addZombie(i*120,new NormalZombie(spawnPos));
+    Random rand = new Random();
+    int[] zombieCounts = new int[]{1,1,1,2,2,3,3,3,4,10}; // how many zombies spawn in each wave (10 waves)
+    int spawnSpacingTime = 240;
+    int waveSpacingTime = 480;
+    int frameCount = 0;
+
+    for (int wave = 0; wave < zombieCounts.length; wave++) {
+      int zombiesInWave = zombieCounts[wave];
+      for (int i = 0; i < zombiesInWave; i++) {
+        int delay = frameCount + i * spawnSpacingTime;
+        int row = rand.nextInt(5);
+        Point spawnPos = new Point(p.width,row * 100 + 40);
+        waves.addZombie(delay,new NormalZombie(spawnPos));
+      }
+      frameCount+= waveSpacingTime;
     }
   }
   public void update() {
@@ -231,9 +233,11 @@ public class Game {
           newPlant = new Peashooter(cell[0], cell[1]);
       }
 
-      if (newPlant != null && suns.spendSun(newPlant.getCost())) {
-        if (board.placePlant(newPlant, cell)) {
-          plants.add(newPlant);
+      if (newPlant != null && !board.isOccupied(cell[0], cell[1])){ 
+        if (suns.spendSun(newPlant.getCost())) {
+          if (board.placePlant(newPlant, cell)) {
+            plants.add(newPlant);
+          }
         }
       }
     }
