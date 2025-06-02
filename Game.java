@@ -272,8 +272,12 @@ public class Game {
       menu.setInPauseMenu(true);
     }
   }
-
+  
   public void toggleShovel(){
     shovelMode = !shovelMode;
+  }
+
+  public ArrayList<Zombie> getZombies() {
+    return zombies;
   }
 }

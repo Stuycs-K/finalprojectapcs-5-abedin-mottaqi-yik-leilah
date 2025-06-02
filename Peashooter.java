@@ -6,7 +6,7 @@ public class Peashooter extends Plant{
   // private int cooldownTimer = FRAMES; gonna remove for now, trying to make a functioning game
   // private Board b; gonna remove for now, trying to make a functioning game
 
-  private int cooldown = 0;
+  private int shootCooldown = 0;
   private static Game gameRef; // need this for now to make it run properly
 
   public Peashooter(int row, int col){
@@ -14,38 +14,33 @@ public class Peashooter extends Plant{
   }
 
   public void update(){
-    cooldown--;
-    if(cooldown <= 0){
-      Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50 + 100);
-      Pea pea = new Pea(peaStart);
-      gameRef.addProjectile(pea);
-      cooldown = 60;
+    shootCooldown--;
+    if (shootCooldown <= 0 && zombieInRow()) {
+      shoot();
+      shootCooldown = 86;
     }
+  }
+
+  private boolean zombieInRow() {
+    for (Zombie z : gameRef.getZombies()) {
+      int zombieRow = (int) ((z.getY()-100) / 100);
+      if (zombieRow == getRow()) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  private void shoot(){
+    Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50 + 100);
+    Pea pea = new Pea(peaStart);
+    gameRef.addProjectile(pea);
   }
 
   // need this for now to make it run properly
   public static void setGame(Game g){
     gameRef = g;
   }
-
-  /* gonna remove for now, trying to make a functioning game
-  @Override
-  public void update(){
-    // ADD METHOD TO CHECK IF BOARD HAS A ZOMOBIE IN IT
-    while(cooldownTimer > 0 && b.rowHasZomb(getRow())){
-      cooldownTimer--;
-    }
-    // if no zombie and cooldown timer is 0, leave it
-    cooldownTimer = (int) Math.round((60) * (Math.random() * .15 + 1.35));
-  }
-
-  
-  @Override
-  public void ability(){
-    Point spawn = new Point(getRow(),getCol());
-    Projectile pea = new Projectile(spawn,5,20);
-  }
-  */
 
   @Override
   public void show(PApplet p){
