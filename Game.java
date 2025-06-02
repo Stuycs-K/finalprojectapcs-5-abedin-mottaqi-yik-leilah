@@ -22,17 +22,11 @@ public class Game {
 
   public Game(int ScreenWidth, int ScreenHeight, PApplet p) {
     board = new Board(5,9,ScreenWidth,ScreenHeight,p);
-    // Waves level1 = new Waves(); removed for now for testing
     this.p = p;
     Peashooter.setGame(this); // need these for now to make work
     Sunflower.setGame(this);
     NormalZombie.setGame(this);
     this.menu = new UIManager(p);
-    /* removed for now for testing
-    for (int i=0; i<5; i++) {
-      level1.addWave(1, new NormalZombie(new Point(screenWidth, i * 100)), 60*i); // should spawn 1 zombie every second i think
-    }
-    levels.add(level1); */
   }
   public void startLevel(int idx){
     waves = new Waves();
@@ -124,7 +118,7 @@ public class Game {
       }
     }
 
-    // logic for when wave is complete
+    // check if user won
     if (waves != null && waves.isDone() && zombies.isEmpty()) {
       menu.setInWinScreen(true);
     }
