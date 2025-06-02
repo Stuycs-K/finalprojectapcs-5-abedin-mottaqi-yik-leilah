@@ -15,6 +15,8 @@ public class Game {
   private UIManager menu;
   private boolean shovelMode = false;
   private int sunTimer = 0;
+  private int waveTimer = 1800;
+  private boolean startWave = false;
 
 
   private PApplet p;
@@ -55,7 +57,14 @@ public class Game {
 
     board.updatePlants();
 
-    if (waves != null){
+    if (!startWave){
+      waveTimer--;
+      if (waveTimer <= 0){
+        startWave = true;
+        startLevel(0);
+      }
+    }
+    if (startWave && waves != null){
       ArrayList<Zombie> newZombies = waves.update();
       for (Zombie z: newZombies) zombies.add(z);
     }
@@ -270,6 +279,8 @@ public class Game {
     waves = null;
     suns.reset();
     board.clear();
+    waveTimer = 1800;
+    startWave = false;
 
     menu.setInGameOver(false);
     menu.setInWinScreen(false);
