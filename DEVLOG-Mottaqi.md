@@ -38,3 +38,8 @@ added ability to shovel unwanted plants
 added ability for zombies to attack plants
 added 10 waves where zombie spawns get increasingly harder (probably too hard currently)
 small bugfixes to make game better
+
+## 2025-06-02 - made Wallnut, restart button, started Lawnmower
+created Wallnut plant and button to place
+added a restart button for the pause menu
+started working on Lawnmower class
