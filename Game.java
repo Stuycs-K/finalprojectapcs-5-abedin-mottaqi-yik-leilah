@@ -33,6 +33,7 @@ public class Game {
     this.p = p;
     Peashooter.setGame(this); // need these for now to make work
     Sunflower.setGame(this); 
+    NormalZombie.setGame(this);
     this.menu = new UIManager(p);
     /* removed for now for testing
     for (int i=0; i<5; i++) {
@@ -80,18 +81,6 @@ public class Game {
     for (Projectile pr: projectiles) pr.update();
     for (NormalSun s: sunObjects) s.update();
 
-    // logic for peas hitting zombies (is a little bugged but will fix later)
-    for (Projectile pr: projectiles) {
-      Point pp = pr.getPos();
-      for (Zombie z: zombies) {
-        float zx = z.getX();
-        float zy = z.getY();
-        if (Math.abs(pp.x - zx) < 30 && Math.abs(pp.y - zy) < 60) {
-          z.takeDamage(pr.getDamage());
-          pr.markRemoval();
-        }
-      }
-    }
     // logic for peas hitting zombies (is a little bugged but will fix later)
     for (Projectile pr: projectiles) {
       Point pp = pr.getPos();
@@ -279,5 +268,9 @@ public class Game {
 
   public ArrayList<Zombie> getZombies() {
     return zombies;
+  }
+
+  public Board getBoard() {
+    return board.getBoard();
   }
 }

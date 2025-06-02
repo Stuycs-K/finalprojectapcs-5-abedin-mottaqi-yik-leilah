@@ -5,7 +5,7 @@ public class Sunflower extends Plant {
     private static Game gameRef; // need this for now to make it run properly
 
     public Sunflower(int row, int col){
-      super(row,col);
+      super(row,col,50,300);
     }
 
     @Override

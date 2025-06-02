@@ -72,4 +72,15 @@ public class Board {
       }
       return null;
     }
+
+    public Plant getPlant(int[] cell){
+      if (cell != null && cell[0] >= 0 && cell[0] < plantGrid.length && cell[1] >= 0 && cell[1] < plantGrid[0].length){
+        return plantGrid[cell[0]][cell[1]];
+      }
+      return null;
+    }
+
+    public Board getBoard(){
+      return this;
+    }
 }

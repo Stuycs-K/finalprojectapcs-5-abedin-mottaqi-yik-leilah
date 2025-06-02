@@ -8,9 +8,10 @@ public class Peashooter extends Plant{
 
   private int shootCooldown = 0;
   private static Game gameRef; // need this for now to make it run properly
+  private int damage = 20;
 
   public Peashooter(int row, int col){
-    super(row,col);
+    super(row,col,100,300);
   }
 
   public void update(){
@@ -33,7 +34,7 @@ public class Peashooter extends Plant{
   
   private void shoot(){
     Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50 + 100);
-    Pea pea = new Pea(peaStart);
+    Pea pea = new Pea(peaStart, damage);
     gameRef.addProjectile(pea);
   }
 
