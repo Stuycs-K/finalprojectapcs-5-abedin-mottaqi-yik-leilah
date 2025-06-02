@@ -4,11 +4,45 @@ public class UIManager {
     private boolean inPauseMenu = false;
     private boolean inGameOver = false;
     private boolean inWinScreen = false;
+    private String selectedPlant = "Sunflower";
 
     private PApplet p;
 
     public UIManager(PApplet p) {
         this.p = p;
+    }
+
+    public void drawUI(int sunBalance){
+        drawButtons();
+        drawSunCounter(sunBalance);
+    }
+
+    public void drawButtons() {
+        if (selectedPlant.equals("Sunflower")) {
+          p.fill(p.color(255, 255, 100));
+        } else {
+          p.fill(200);
+        }
+        p.rect(10,50,100,40);
+        p.fill(0);
+        p.textSize(16);
+        p.text("Sunflower", 60, 70);
+    
+        if (selectedPlant.equals("Peashooter")) {
+          p.fill(p.color(100, 255, 100));
+        } else {
+          p.fill(200);
+        }
+        p.rect(120,50,100,40);
+        p.fill(0);
+        p.textSize(16);
+        p.text("Peashooter", 170, 70);
+    }
+
+    public void drawSunCounter(int sunBalance){
+        p.fill(0);
+        p.textSize(24);
+        p.text("Sun: " + sunBalance, 50, 30);
     }
 
     public void showMainMenu(){
@@ -59,6 +93,14 @@ public class UIManager {
 
     public boolean inWinScreen() {
         return inWinScreen;
+    }
+
+    public String getSelectedPlant() {
+        return selectedPlant;
+    }
+
+    public void setSelectedPlant(String plant) {
+        this.selectedPlant = plant;
     }
 
     public void setInMainMenu(boolean inMainMenu) {

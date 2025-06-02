@@ -13,7 +13,6 @@ public class Game {
   private Waves waves;
   private Board board;
   private UIManager menu;
-  private String selectedPlant = "Sunflower";
   private boolean shovelMode = false;
   private int sunTimer = 0;
 
@@ -127,6 +126,18 @@ public class Game {
     for (Projectile pr: projectiles) pr.show(p);
     for (NormalSun sun: sunObjects) sun.show(p);
 
+    menu.drawUI(suns.getBalance());
+
+    if (shovelMode){
+      p.fill(p.color(255, 100, 100));
+    } else {
+      p.fill(200);
+    }
+    p.rect(230,50,100,40);
+    p.fill(0);
+    p.textSize(16);
+    p.text("Shovel", 280, 70);
+
     if (menu.inMainMenu()) {
       menu.showMainMenu();
       return;
@@ -157,42 +168,6 @@ public class Game {
 
       return;
     }
-
-    // drawing buttons here for now, will move to UIManager later
-    if (selectedPlant.equals("Sunflower")) {
-      p.fill(p.color(255, 255, 100));
-    } else {
-      p.fill(200);
-    }
-    p.rect(10,50,100,40);
-    p.fill(0);
-    p.textSize(16);
-    p.text("Sunflower", 60, 70);
-
-    if (selectedPlant.equals("Peashooter")) {
-      p.fill(p.color(100, 255, 100));
-    } else {
-      p.fill(200);
-    }
-    p.rect(120,50,100,40);
-    p.fill(0);
-    p.textSize(16);
-    p.text("Peashooter", 170, 70);
-
-    if (shovelMode){
-      p.fill(p.color(255, 100, 100));
-    } else {
-      p.fill(200);
-    }
-    p.rect(230,50,100,40);
-    p.fill(0);
-    p.textSize(16);
-    p.text("Shovel", 280, 70);
-
-    // sun balance display will move to UIManager later
-    p.fill(0);
-    p.textSize(24);
-    p.text("Sun: " + suns.getBalance(), 50, 30);
   }
 
   // method to handle mouse clicks
@@ -219,10 +194,10 @@ public class Game {
 
     if (y >= 50 && y <= 90) {
       if (x >= 10 && x <= 110) {
-        selectedPlant = "Sunflower";
+        menu.setSelectedPlant("Sunflower");
         return;
       } else if (x >= 120 && x <= 220) {
-        selectedPlant = "Peashooter";
+        menu.setSelectedPlant("Peashooter");
         return;
       } else if (x >= 230 && x <= 330) {
         toggleShovel();
@@ -239,14 +214,18 @@ public class Game {
         return;
       }  
 
-      if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
-          Sunflower flower = new Sunflower(cell[0], cell[1]);
-          board.placePlant(flower, cell);
-          plants.add(flower);
-      } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
-          Peashooter shooter = new Peashooter(cell[0], cell[1]);
-          board.placePlant(shooter, cell);
-          plants.add(shooter);
+      Plant newPlant = null;
+
+      if (menu.getSelectedPlant().equals("Sunflower")) {
+          newPlant = new Sunflower(cell[0], cell[1]);
+      } else if (menu.getSelectedPlant().equals("Peashooter")) {
+          newPlant = new Peashooter(cell[0], cell[1]);
+      }
+
+      if (newPlant != null && suns.spendSun(newPlant.getCost())) {
+        if (board.placePlant(newPlant, cell)) {
+          plants.add(newPlant);
+        }
       }
     }
   }
