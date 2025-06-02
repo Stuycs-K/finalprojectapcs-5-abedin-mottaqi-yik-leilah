@@ -1,9 +1,125 @@
+import processing.core.PApplet;
 public class UIManager {
-    private ArrayList<Plant> plantDisplay = new ArrayList<Plant>();
-    private ArrayList<Boolean> plantSelected = new ArrayList<Boolean>();
-    private int sunCount;
+    private boolean inMainMenu = true;
+    private boolean inPauseMenu = false;
+    private boolean inGameOver = false;
+    private boolean inWinScreen = false;
+    private String selectedPlant = "Sunflower";
 
-    public void selectPlant(int idx){
-        plantSelected.set(idx, !plantSelected.get(i));
+    private PApplet p;
+
+    public UIManager(PApplet p) {
+        this.p = p;
+    }
+
+    public void drawUI(int sunBalance){
+        drawButtons();
+        drawSunCounter(sunBalance);
+    }
+
+    public void drawButtons() {
+        if (selectedPlant.equals("Sunflower")) {
+          p.fill(p.color(255, 255, 100));
+        } else {
+          p.fill(200);
+        }
+        p.rect(10,50,100,40);
+        p.fill(0);
+        p.textSize(16);
+        p.text("Sunflower", 60, 70);
+    
+        if (selectedPlant.equals("Peashooter")) {
+          p.fill(p.color(100, 255, 100));
+        } else {
+          p.fill(200);
+        }
+        p.rect(120,50,100,40);
+        p.fill(0);
+        p.textSize(16);
+        p.text("Peashooter", 170, 70);
+    }
+
+    public void drawSunCounter(int sunBalance){
+        p.fill(0);
+        p.textSize(24);
+        p.text("Sun: " + sunBalance, 50, 30);
+    }
+
+    public void showMainMenu(){
+        p.background(200);
+        p.fill(0);
+        p.textSize(48);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text("Plants vs Zombies", p.width/2, p.height/2 - 50);
+        p.textSize(24);
+        p.text("Click to Start", p.width/2, p.height/2 + 20);
+    }
+
+    public void showPauseScreen(){
+        p.fill(0,100);
+        p.rect(0,0,p.width,p.height);
+        p.fill(255);
+        p.textSize(32);
+        p.text("Paused",p.width/2,p.height/2);
+    }
+
+    public void showGameOverScreen() {
+        p.background(0);
+        p.fill(255, 0, 0);
+        p.textSize(48);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text("Game Over", p.width / 2, p.height / 2);
+    }
+
+    public void showWinScreen() {
+        p.background(255);
+        p.fill(0, 200, 0);
+        p.textSize(48);
+        p.textAlign(p.CENTER, p.CENTER);
+        p.text("You Win", p.width / 2, p.height / 2);
+    }
+
+    public boolean inMainMenu() {
+        return inMainMenu;
+    }
+
+    public boolean inPauseMenu() {
+        return inPauseMenu;
+    }
+
+    public boolean inGameOver() {
+        return inGameOver;
+    }
+
+    public boolean inWinScreen() {
+        return inWinScreen;
+    }
+
+    public String getSelectedPlant() {
+        return selectedPlant;
+    }
+
+    public void setSelectedPlant(String plant) {
+        this.selectedPlant = plant;
+    }
+
+    public void setInMainMenu(boolean inMainMenu) {
+        this.inMainMenu = inMainMenu;
+    }
+
+    public void setInPauseMenu(boolean inPauseMenu) {
+        this.inPauseMenu = inPauseMenu;
+    }
+
+    public void setInGameOver(boolean inGameOver) {
+        this.inGameOver = inGameOver;
+    }
+
+    public void setInWinScreen(boolean inWinScreen) {
+        this.inWinScreen = inWinScreen;
+    }
+
+    public boolean anyOverlayActive(){
+        return inMainMenu || inPauseMenu || inGameOver || inWinScreen;
     }
 }
