@@ -83,4 +83,12 @@ public class Board {
     public Board getBoard(){
       return this;
     }
+
+    public void clear(){
+      for (int r=0;r<plantGrid.length;r++){
+        for (int c=0;c<plantGrid[0].length;c++){
+          plantGrid[r][c] = null;
+        }
+      }
+    }
 }
