@@ -1,7 +1,7 @@
 import processing.core.PApplet;
 import java.awt.Point;
 public class NormalZombie extends Zombie{
-  private float speed = -0.47f;
+  private float speed = -0.27f;
   private int damageCooldown = 0;
   private static Game gameRef;
   private int damage = 100;

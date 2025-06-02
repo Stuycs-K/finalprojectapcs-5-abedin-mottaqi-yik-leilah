@@ -2,6 +2,7 @@ import processing.core.PApplet;
 import java.awt.Point;
 public class NormalSun implements Displayable, Interactable {
     private float x,y;
+    private float yFinal;
     private boolean collected = false;
     /*
      * notes:
@@ -16,12 +17,15 @@ public class NormalSun implements Displayable, Interactable {
         int col = (int)(Math.random() * 9);
         this.x = col * 100 + 50;
         this.y = -10;
+        // sun will stop falling at a certain point
+        this.yFinal = (float) Math.random() * (500) + 30;
     }
 
     // sunflower spawning
     public NormalSun(Point spawn){
         this.x = spawn.x;
         this.y = spawn.y;
+        this.yFinal = spawn.y;
     }
     @Override
     public void show(PApplet p) {
@@ -37,7 +41,7 @@ public class NormalSun implements Displayable, Interactable {
 
     public void update() {
         // make it fall, can change later
-        if (!collected){
+        if (!collected && Math.abs(y - yFinal) > 0.7){
             y += 1;
         }
     }
