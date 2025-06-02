@@ -15,4 +15,8 @@ public class PlayerSun{
     // make the sun thingy turn red and angry
     return false;
   }
+
+  public void reset(){
+    this.balance = 50;
+  }
 }

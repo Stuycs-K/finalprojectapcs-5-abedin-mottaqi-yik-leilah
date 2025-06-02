@@ -13,9 +13,10 @@ public class Game {
   private Waves waves;
   private Board board;
   private UIManager menu;
-  private String selectedPlant = "Sunflower";
   private boolean shovelMode = false;
   private int sunTimer = 0;
+  private int waveTimer = 1800;
+  private boolean startWave = false;
 
 
   private PApplet p;
@@ -33,6 +34,7 @@ public class Game {
     this.p = p;
     Peashooter.setGame(this); // need these for now to make work
     Sunflower.setGame(this); 
+    NormalZombie.setGame(this);
     this.menu = new UIManager(p);
     /* removed for now for testing
     for (int i=0; i<5; i++) {
@@ -48,16 +50,6 @@ public class Game {
       Point spawnPos = new Point(p.width,row * 100 + 40);
       waves.addZombie(i*120,new NormalZombie(spawnPos));
     }
-    /* removed for now for testing
-    if (idx>=0 && idx<levels.size()) {
-      currentWave = levels.get(idx);
-      mainMenu = false;
-      pauseScreen = false;
-      endScreen = false;
-      zombies.clear();
-      plants.clear();
-      lawn.clear();
-    }*/
   }
   public void update() {
     // check if in menu, pause, or end screen
@@ -65,7 +57,14 @@ public class Game {
 
     board.updatePlants();
 
-    if (waves != null){
+    if (!startWave){
+      waveTimer--;
+      if (waveTimer <= 0){
+        startWave = true;
+        startLevel(0);
+      }
+    }
+    if (startWave && waves != null){
       ArrayList<Zombie> newZombies = waves.update();
       for (Zombie z: newZombies) zombies.add(z);
     }
@@ -80,18 +79,6 @@ public class Game {
     for (Projectile pr: projectiles) pr.update();
     for (NormalSun s: sunObjects) s.update();
 
-    // logic for peas hitting zombies (is a little bugged but will fix later)
-    for (Projectile pr: projectiles) {
-      Point pp = pr.getPos();
-      for (Zombie z: zombies) {
-        float zx = z.getX();
-        float zy = z.getY();
-        if (Math.abs(pp.x - zx) < 30 && Math.abs(pp.y - zy) < 60) {
-          z.takeDamage(pr.getDamage());
-          pr.markRemoval();
-        }
-      }
-    }
     // logic for peas hitting zombies (is a little bugged but will fix later)
     for (Projectile pr: projectiles) {
       Point pp = pr.getPos();
@@ -148,43 +135,7 @@ public class Game {
     for (Projectile pr: projectiles) pr.show(p);
     for (NormalSun sun: sunObjects) sun.show(p);
 
-    if (menu.inMainMenu()) {
-      menu.showMainMenu();
-      return;
-    }
-    if (menu.inPauseMenu()) {
-      menu.showPauseScreen();
-      return;
-    }
-    if (menu.inGameOver()) {
-      menu.showGameOverScreen();
-      return;
-    }
-    if (menu.inWinScreen()) {
-      menu.showWinScreen();
-      return;
-    }
-
-    // drawing buttons here for now, will move to UIManager later
-    if (selectedPlant.equals("Sunflower")) {
-      p.fill(p.color(255, 255, 100));
-    } else {
-      p.fill(200);
-    }
-    p.rect(10,50,100,40);
-    p.fill(0);
-    p.textSize(16);
-    p.text("Sunflower", 60, 70);
-
-    if (selectedPlant.equals("Peashooter")) {
-      p.fill(p.color(100, 255, 100));
-    } else {
-      p.fill(200);
-    }
-    p.rect(120,50,100,40);
-    p.fill(0);
-    p.textSize(16);
-    p.text("Peashooter", 170, 70);
+    menu.drawUI(suns.getBalance());
 
     if (shovelMode){
       p.fill(p.color(255, 100, 100));
@@ -196,10 +147,36 @@ public class Game {
     p.textSize(16);
     p.text("Shovel", 280, 70);
 
-    // sun balance display will move to UIManager later
-    p.fill(0);
-    p.textSize(24);
-    p.text("Sun: " + suns.getBalance(), 50, 30);
+    if (menu.inMainMenu()) {
+      menu.showMainMenu();
+      return;
+    }
+    if (menu.inPauseMenu()) {
+      menu.showPauseScreen();
+      return;
+    }
+    if (menu.inGameOver()) {
+      menu.showGameOverScreen();
+
+      p.fill(200);
+      p.rect(375,400,200,50);
+      p.fill(0);
+      p.textSize(24);
+      p.text("Restart", 475, 425);
+
+      return;
+    }
+    if (menu.inWinScreen()) {
+      menu.showWinScreen();
+
+      p.fill(200);
+      p.rect(375,400,200,50);
+      p.fill(0);
+      p.textSize(24);
+      p.text("Restart", 475, 425);
+
+      return;
+    }
   }
 
   // method to handle mouse clicks
@@ -219,12 +196,17 @@ public class Game {
       return;
     }
 
+    if ((menu.inGameOver() || menu.inWinScreen()) && x >= 375 && x <= 575 && y >= 400 && y <= 450) {
+      restartGame();
+      return;
+    }
+
     if (y >= 50 && y <= 90) {
       if (x >= 10 && x <= 110) {
-        selectedPlant = "Sunflower";
+        menu.setSelectedPlant("Sunflower");
         return;
       } else if (x >= 120 && x <= 220) {
-        selectedPlant = "Peashooter";
+        menu.setSelectedPlant("Peashooter");
         return;
       } else if (x >= 230 && x <= 330) {
         toggleShovel();
@@ -241,14 +223,18 @@ public class Game {
         return;
       }  
 
-      if (selectedPlant.equals("Sunflower") && suns.spendSun(50)) {
-          Sunflower flower = new Sunflower(cell[0], cell[1]);
-          board.placePlant(flower, cell);
-          plants.add(flower);
-      } else if (selectedPlant.equals("Peashooter") && suns.spendSun(10)) {
-          Peashooter shooter = new Peashooter(cell[0], cell[1]);
-          board.placePlant(shooter, cell);
-          plants.add(shooter);
+      Plant newPlant = null;
+
+      if (menu.getSelectedPlant().equals("Sunflower")) {
+          newPlant = new Sunflower(cell[0], cell[1]);
+      } else if (menu.getSelectedPlant().equals("Peashooter")) {
+          newPlant = new Peashooter(cell[0], cell[1]);
+      }
+
+      if (newPlant != null && suns.spendSun(newPlant.getCost())) {
+        if (board.placePlant(newPlant, cell)) {
+          plants.add(newPlant);
+        }
       }
     }
   }
@@ -272,8 +258,33 @@ public class Game {
       menu.setInPauseMenu(true);
     }
   }
-
+  
   public void toggleShovel(){
     shovelMode = !shovelMode;
+  }
+
+  public ArrayList<Zombie> getZombies() {
+    return zombies;
+  }
+
+  public Board getBoard() {
+    return board.getBoard();
+  }
+
+  public void restartGame() {
+    plants.clear();
+    zombies.clear();
+    projectiles.clear();
+    sunObjects.clear();
+    waves = null;
+    suns.reset();
+    board.clear();
+    waveTimer = 1800;
+    startWave = false;
+
+    menu.setInGameOver(false);
+    menu.setInWinScreen(false);
+    menu.setInPauseMenu(false);
+    menu.setInMainMenu(true);
   }
 }
