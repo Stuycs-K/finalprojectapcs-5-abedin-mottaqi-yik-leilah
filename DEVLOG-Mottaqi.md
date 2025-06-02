@@ -30,3 +30,11 @@ fixed many typecasting errors
 
 ## 2025-05-30-At-Home - made a working processing program
 Edited every file so that it compiles and runs in processing. Currently have a game where you can place sunflowers, collect suns, place peashooters and kill exactly one zombie.
+
+## 2025-06-01 - so many additions
+finished waves class
+finished UIManager - added buttons for choosing what plant you want to place, shovel button, and menu screens
+added ability to shovel unwanted plants
+added ability for zombies to attack plants
+added 10 waves where zombie spawns get increasingly harder (probably too hard currently)
+small bugfixes to make game better
