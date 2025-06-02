@@ -27,4 +27,4 @@ Mostly worked on trying to fix classes like Plant (+ related - Peashooter, Sunfl
 
 
 ### 2025-06-01 - 
-Fixed sun so that it doesn't fall on sunflowers and that it stops falling to a certain (random) pos in the lawn.
+Fixed sun so that it doesn't fall on sunflowers and that it stops falling to a certain (random) pos in the lawn. Adding a healthbar.
