@@ -23,4 +23,8 @@ Worked on finding starting numbers for the game (PlayerSun starting amount, zomb
 ### 2025-05-29 - Plants and Zombies
 Mostly worked on trying to fix classes like Plant (+ related - Peashooter, Sunflower), Zombie. Updated UML Diagram. Also worked on NrmalSun. Did a lot of stuff with cooldowns. Worked on update for projectile.
 
-### 2025-05-30 -
+### 2025-05-30 - Plants and Zombies
+
+
+### 2025-06-01 - 
+Fixed sun so that it doesn't fall on sunflowers and that it stops falling to a certain (random) pos in the lawn.

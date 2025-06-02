@@ -1,11 +1,8 @@
 import processing.core.PApplet;
 import java.awt.Point;
-public class NormalSun implements Interactable {
-    private Point pos;
+public class NormalSun implements Displayable, Interactable {
+    private float x,y;
     private boolean collected = false;
-    private final int fallSpeed = 1; // idk what this value should be pls figure it out leilah thanks
-    private final int radius = 20; // idk what this value should be pls figure it out leilah thanks
-    private int finalRow;
     /*
      * notes:
      * - sun spawns roughly every 8 seconds
@@ -13,50 +10,50 @@ public class NormalSun implements Interactable {
      * - sunflower production rate is every 24 seconds
      */
 
-     public NormalSun(){
-       // spawn in random location on lawn
-       this.pos = new Point(Math.random() * width, 0);
-       finalRow = (int) (Math.random() * 6);
-     }
-
-     public NormalSun(int row){
-       // spawn in random location on lawn
-       this.pos = new Point(Math.random() * width, 0);
-       finalRow = row;
-     }
-
-     // what does this constructor do...
-    public NormalSun(Point pos) {
-        this.pos = new Point(pos);
+    // random spawning
+    public NormalSun(){
+        // spawn in random location on lawn
+        int col = (int)(Math.random() * 9);
+        this.x = col * 100 + 50;
+        this.y = -10;
     }
 
+    // sunflower spawning
+    public NormalSun(Point spawn){
+        this.x = spawn.x;
+        this.y = spawn.y;
+    }
     @Override
-    public void interact() {
-        collected = true;
+    public void show(PApplet p) {
+        if (!collected) {
+            p.fill(255, 255, 0);
+            p.ellipse(x, y, 30, 30);
+        }
     }
 
-    @Override
-    public void update() {
-        // update 15 to be whatever the width of a row will be + the sky
-        if (pos.getY() < finalRow * 15 + 50) this.pos.move(pos.getX(), pos.get(Y) + fallSpeed * 0.05);
-    }
-    @Override
-    public void show() {
-    }
-    @Override
-    public void hide() {
-    }
-    @Override
     public Point getPos() {
-        return pos;
+        return new Point((int)x, (int)y);
+    }
+
+    public void update() {
+        // make it fall, can change later
+        if (!collected){
+            y += 1;
+        }
     }
     public boolean isCollected() {
         return collected;
     }
-    public void collect(PlayerSun playersun){
-        if (!collected) {
-            collected = true;
-            playersun.addSun(25); // too lazy to research
-        }
+
+    @Override
+    public void onClick(){
+        collected = true;
+    }
+
+    @Override
+    public boolean clicked(int mouseX, int mouseY) {
+        float dx = mouseX - x;
+        float dy = mouseY - y;
+        return dx * dx + dy * dy <= 400;  // radius 20
     }
 }

@@ -1,37 +1,47 @@
 import processing.core.PApplet;
 import java.awt.Point;
 public class Peashooter extends Plant{
-  // WHY IS FRAMES 81...
-  private static final int FRAMES = 81;
-  private int cooldownTimer = FRAMES;
+  private int shootCooldown = 0;
+  private static Game gameRef; // need this for now to make it run properly
+  private int damage = 20;
 
-  public Peashooter(int[] pos){
-    super(pos,300,100);
+  public Peashooter(int row, int col){
+    super(row,col,100,300);
   }
 
-  @Override
   public void update(){
-    // ADD METHOD TO CHECK IF BOARD HAS A ZOMOBIE IN IT
-    while(cooldownTimer > 0 && ){
-      cooldownTimer--;
+    shootCooldown--;
+    if (shootCooldown <= 0 && zombieInRow()) {
+      shoot();
+      shootCooldown = 86;
     }
-    if ()
-    // if no zombie and cooldown timer is 0, leave it
-    cooldownTimer = (int) (60) * (Math.random() * .15 + 1.35);
+  }
+
+  private boolean zombieInRow() {
+    for (Zombie z : gameRef.getZombies()) {
+      int zombieRow = (int) ((z.getY()-100) / 100);
+      if (zombieRow == getRow()) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  private void shoot(){
+    Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50 + 100);
+    Pea pea = new Pea(peaStart, damage);
+    gameRef.addProjectile(pea);
+  }
+
+  // need this for now to make it run properly
+  public static void setGame(Game g){
+    gameRef = g;
   }
 
   @Override
-  public void ability(){
-    Point spawn = new Point(getPos());
-    Projectile pea = new Projectile(spawn,5,20);
-  }
-
-  @Override
-  public void show(){
-
-  }
-  @Override
-  public void hide(){
-
+  public void show(PApplet p){
+    Point pos = getPos();
+    p.fill(0, 255, 0);
+    p.ellipse(getCol() * 100 + 50, getRow() * 100 + 50 + 100, 40, 40); 
   }
 }
