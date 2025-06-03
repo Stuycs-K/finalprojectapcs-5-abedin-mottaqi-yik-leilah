@@ -1,8 +1,10 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 import java.awt.Point;
 public class Sunflower extends Plant {
     private int cooldown = 0; // renamed for consistency
     private static Game gameRef; // need this for now to make it run properly
+    private PImage full;
 
     public Sunflower(int row, int col){
       super(row,col,50,300);
@@ -20,8 +22,11 @@ public class Sunflower extends Plant {
     }
     @Override
     public void show(PApplet p){
-      p.fill(255, 204, 0);
-      p.ellipse(getCol() * 100 + 50, getRow() * 100 + 50 + 100, 40, 40);
+      full = p.loadImage("sunflower_1.png");
+      full.resize(75,75);
+      p.image(full, (float)(getCol() * 100+10), (float)(getRow() * 100 + 10 + 100));
+      // p.fill(255, 204, 0);
+      // p.ellipse(getCol() * 100 + 50, getRow() * 100 + 50 + 100, 40, 40);
     }
 
     // need this for now to make it run properly
