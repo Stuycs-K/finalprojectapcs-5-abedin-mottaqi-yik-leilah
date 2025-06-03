@@ -30,7 +30,6 @@ public class NormalZombie extends Zombie{
     if (damageCooldown > 0) {
       damageCooldown--;
     }
-    healthbar.update(health);
   }
   @Override
   public void show(PApplet p) {
