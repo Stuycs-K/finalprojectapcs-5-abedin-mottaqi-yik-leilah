@@ -15,7 +15,7 @@ public class Game {
   private UIManager menu;
   private boolean shovelMode = false;
   private int sunTimer = 0;
-  private int waveTimer = 1800;
+  private int waveTimer = 1200;
   private boolean startWave = false;
 
 
@@ -120,7 +120,8 @@ public class Game {
       if (z.getX()<=0) {
         int row = (int)((z.getY()-100)/100);
         if (row>=0 && row < lawnmowers.size() && !lawnmowers.get(row).isUsed()) {
-          lawnmowers.get(row).trigger(); 
+          lawnmowers.get(row).trigger();
+          return; 
         } else {
           menu.setInGameOver(true);
           return;
