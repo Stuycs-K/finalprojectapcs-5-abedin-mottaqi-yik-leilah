@@ -46,3 +46,6 @@ started working on Lawnmower class
 
 ## 2025-06-02-At-Home - finished Lawnmower
 finished adding lawnmowers
+
+## 2025-06-03 - Sprites
+started adding sprites
