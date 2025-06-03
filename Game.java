@@ -7,6 +7,7 @@ public class Game {
   private ArrayList<Zombie> zombies = new ArrayList<>();
   private ArrayList<Projectile> projectiles = new ArrayList<>();
   private ArrayList<NormalSun> sunObjects = new ArrayList<>();
+  private ArrayList<Lawnmower> lawnmowers = new ArrayList<>();
   private PlayerSun suns = new PlayerSun();
   //private ArrayList<SoundFile> music = new ArrayList<SoundFile>();
   private Waves waves;
@@ -26,6 +27,9 @@ public class Game {
     Peashooter.setGame(this); // need these for now to make work
     Sunflower.setGame(this);
     NormalZombie.setGame(this);
+    for (int row=0;row<5;row++){
+      lawnmowers.add(new Lawnmower(row));
+    }
     this.menu = new UIManager(p);
   }
   public void startLevel(int idx){
@@ -74,6 +78,7 @@ public class Game {
     for (Zombie z: zombies) z.update();
     for (Projectile pr: projectiles) pr.update();
     for (NormalSun s: sunObjects) s.update();
+    for (Lawnmower l: lawnmowers) l.update(zombies);
 
     // logic for peas hitting zombies (is a little bugged but will fix later)
     for (Projectile pr: projectiles) {
@@ -110,11 +115,16 @@ public class Game {
 
     }
 
-    // check if game is over
+    // check to see if a zombie reaches the end and to use mower or not
     for (Zombie z: zombies) {
-      if (z.getX() <= 0) {
-        menu.setInGameOver(true);
-        return;
+      if (z.getX()<=0) {
+        int row = (int)((z.getY()-100)/100);
+        if (row>=0 && row < lawnmowers.size() && !lawnmowers.get(row).isUsed()) {
+          lawnmowers.get(row).trigger(); 
+        } else {
+          menu.setInGameOver(true);
+          return;
+        }
       }
     }
 
@@ -130,6 +140,7 @@ public class Game {
     for (Zombie z: zombies) z.show(p);
     for (Projectile pr: projectiles) pr.show(p);
     for (NormalSun sun: sunObjects) sun.show(p);
+    for (Lawnmower l: lawnmowers) l.show(p);
 
     menu.drawUI(suns.getBalance());
 
