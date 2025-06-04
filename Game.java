@@ -22,10 +22,6 @@ public class Game {
   private int slowRecharge = 1800;
   private int verySlowRecharge = 3000;
 
-  private boolean canUsePeashooter = true;
-  private boolean canUseSunflower = true;
-  private boolean canUseWallnut = true;
-
   private PApplet p;
 
   public Game(int ScreenWidth, int ScreenHeight, PApplet p) {
