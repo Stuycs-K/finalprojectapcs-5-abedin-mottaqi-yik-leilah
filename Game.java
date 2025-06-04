@@ -18,6 +18,13 @@ public class Game {
   private int waveTimer = 1200;
   private boolean startWave = false;
 
+  private int fastRecharge = 450;
+  private int slowRecharge = 1800;
+  private int verySlowRecharge = 3000;
+
+  private boolean canUsePeashooter = true;
+  private boolean canUseSunflower = true;
+  private boolean canUseWallnut = true;
 
   private PApplet p;
 
@@ -121,7 +128,7 @@ public class Game {
         int row = (int)((z.getY()-100)/100);
         if (row>=0 && row < lawnmowers.size() && !lawnmowers.get(row).isUsed()) {
           lawnmowers.get(row).trigger();
-          return; 
+          return;
         } else {
           menu.setInGameOver(true);
           return;
@@ -308,5 +315,9 @@ public class Game {
     menu.setInWinScreen(false);
     menu.setInPauseMenu(false);
     menu.setInMainMenu(true);
+  }
+
+  public void startRecharge(){
+
   }
 }
