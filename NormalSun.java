@@ -18,7 +18,7 @@ public class NormalSun implements Displayable, Interactable {
         this.x = col * 100 + 50;
         this.y = -10;
         // sun will stop falling at a certain point
-        this.yFinal = (float) Math.random() * (500) + 30;
+        this.yFinal = (float) Math.random() * (500) + 100;
     }
 
     // sunflower spawning
