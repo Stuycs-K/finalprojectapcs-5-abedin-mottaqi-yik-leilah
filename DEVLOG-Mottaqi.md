@@ -46,3 +46,10 @@ started working on Lawnmower class
 
 ## 2025-06-02-At-Home - finished Lawnmower
 finished adding lawnmowers
+
+## 2025-06-03 - sprites
+started adding sprites to plants
+
+## 2025-06-04 - more sprites and recharge
+finished adding sprites for sunflower and peashooter, wallnut still needs lowhealth sprite
+started working on a recharge system when placing plants
