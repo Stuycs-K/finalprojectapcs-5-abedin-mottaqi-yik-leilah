@@ -31,3 +31,15 @@ Fixed sun so that it doesn't fall on sunflowers and that it stops falling to a c
 
 ### 2025-06-02 - Sprites
 Spent class time working on creating sprites for the game. Decided not to add healthbar to stay true to the game. Finished sunflower sprites with varying health values. Finished peashooter sprites with varying health values. Need to finish super injured wallnut. 
+
+### 2025-06-02 - Sprites: Lawnmower and Zombie
+Spent class time working on lawnmower. Spent time at home finishing main zombie sprite. Need to add injured variants. 
+
+### 2025-06-02 - Sprites: Zombie
+Finished injured zombie variants. Started main game background.
+
+### 2024-06-03 - Backgrounds
+Worked on main game background. 
+
+### 2024-06-04 - Background
+Almost completed main game background. Uploaded sprites (needed to make bg transparent).
