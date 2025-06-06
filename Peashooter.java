@@ -33,7 +33,7 @@ public class Peashooter extends Plant{
   }
 
   private void shoot(){
-    Point peaStart = new Point(getCol() * 100 + 50, getRow() * 100 + 50 + 100);
+    Point peaStart = new Point(getCol() * 100 + 75, getRow() * 100 + 25 + 100);
     Pea pea = new Pea(peaStart, damage);
     gameRef.addProjectile(pea);
   }
