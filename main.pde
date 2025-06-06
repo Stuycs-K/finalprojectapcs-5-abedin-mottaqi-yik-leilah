@@ -1,12 +1,14 @@
 Game game;
+PImage lawn;
 
 void setup() {
   size(950, 600);
   game = new Game(width, height, this);
+  lawn = loadImage("lawn.PNG");
 }
 
 void draw() {
-  background(100, 200, 100);
+  image(lawn,0,0);
   game.update();
   game.render();
 }

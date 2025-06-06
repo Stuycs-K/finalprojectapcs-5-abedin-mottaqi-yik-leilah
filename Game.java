@@ -1,6 +1,7 @@
 import java.util.*;
 import processing.core.PApplet;
 import processing.core.PConstants;
+import processing.core.PImage;
 import java.awt.Point;
 public class Game {
   private ArrayList<Plant> plants = new ArrayList<>();
@@ -17,6 +18,7 @@ public class Game {
   private int sunTimer = 0;
   private int waveTimer = 1200;
   private boolean startWave = false;
+  private PImage lawn;
 
   private int fastRecharge = 450;
   private int slowRecharge = 1800;
@@ -139,7 +141,7 @@ public class Game {
   }
 
   public void render() {
-    board.drawGrid();
+    //board.drawGrid();
     board.drawPlants();
     for (Zombie z: zombies) z.show(p);
     for (Projectile pr: projectiles) pr.show(p);
