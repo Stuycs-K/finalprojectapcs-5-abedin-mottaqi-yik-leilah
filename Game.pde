@@ -20,6 +20,7 @@ public class Game {
   private int sunflowerCooldown = 0;
   private int wallnutCooldown = 0;
 
+
   public Game(int ScreenWidth, int ScreenHeight) {
     board = new Board(5,9,ScreenWidth,ScreenHeight);
     for (int row=0;row<5;row++){
@@ -271,6 +272,16 @@ public class Game {
           }
         }
       }
+    }
+  }
+
+  public void handleKeyPress(char key){
+    if (key == 's' || key == 'S'){
+      suns.addSun(100);
+      println("added 100 sun");
+    }
+    if (key == 'P' || key == 'p') {
+      togglePause();
     }
   }
 
