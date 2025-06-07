@@ -280,6 +280,10 @@ public class Game {
       suns.addSun(100);
       println("added 100 sun");
     }
+    if (key == 'k' || key == 'K') {
+      zombies.clear();
+      println("cleared all zombies");
+    }
     if (key == 'P' || key == 'p') {
       togglePause();
     }
@@ -327,6 +331,9 @@ public class Game {
     board.clear();
     waveTimer = 1800;
     startWave = false;
+    peashooterCooldown = 0;
+    sunflowerCooldown = 0;
+    wallnutCooldown = 0;
 
     menu.setInGameOver(false);
     menu.setInWinScreen(false);
