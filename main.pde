@@ -3,8 +3,8 @@ PImage lawn;
 
 void setup() {
   size(950, 600);
-  game = new Game(width, height, this);
-  lawn = loadImage("lawn.PNG");
+  game = new Game(width, height);
+  lawn = loadImage("lawn.png");
 }
 
 void draw() {
