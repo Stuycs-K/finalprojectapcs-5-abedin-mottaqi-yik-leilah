@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PImage;
 import java.util.*;
 import java.awt.Point;
 public class Lawnmower implements Displayable{
@@ -7,6 +8,7 @@ public class Lawnmower implements Displayable{
   private boolean used = false;
   private final float speed = 5;
   private int row;
+  private PImage sprite;
 
   public Lawnmower(int row){
     this.row = row;
@@ -45,8 +47,11 @@ public class Lawnmower implements Displayable{
   @Override
   public void show(PApplet p){
     if (!used || active){
-      p.fill(200,0,0);
-      p.rect(x,y-25,40,50); 
+      sprite = p.loadImage("mower.png");
+      sprite.resize(40,50);
+      p.image(sprite,x-25,y-25);
+      //p.fill(200,0,0);
+      //p.rect(x,y-25,40,50); 
     }
   }
 
