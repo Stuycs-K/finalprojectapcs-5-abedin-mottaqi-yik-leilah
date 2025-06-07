@@ -1,6 +1,8 @@
 import java.awt.Point;
 import processing.core.PApplet;
+import processing.core.PImage;
 public class Pea extends Projectile {
+    private PImage sprite;
     public Pea(Point start, int damage) {
         super(start, 4f, damage); // speed, damage
     }
@@ -13,7 +15,7 @@ public class Pea extends Projectile {
     }
 
     public void show(PApplet p){
-        p.fill(50, 200, 50);
-        p.ellipse(getX(), getY(), 15, 15);
+        sprite = p.loadImage("pea.png");
+        p.image(sprite, getX(), getY());
     }
 }

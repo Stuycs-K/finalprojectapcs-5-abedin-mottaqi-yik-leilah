@@ -4,23 +4,23 @@ public class Wallnut extends Plant{
   private PImage sprite;
   private String fullHealth = "wallnut_1.png";
   private String medHealth = "wallnut_2.png";
-  private String lowHealth = "peashooter_3.png";
+  private String lowHealth = "wallnut_3.png";
 
   public Wallnut(int row, int col){
     super(row,col,50,4000);
   }
-
+  
   @Override
   public void update(){
   }
 
   @Override
   public void show(PApplet p){
-    if (getHealth() == 4000) {
+    if (getHealth() >= 2700) {
       sprite = p.loadImage(fullHealth);
-    } else if (getHealth() == 2700) {
+    } else if (getHealth() >= 1400) {
       sprite = p.loadImage(medHealth);
-    } else if (getHealth() == 1400) {
+    } else {
       sprite = p.loadImage(lowHealth);
     }
     sprite.resize(75,75);
