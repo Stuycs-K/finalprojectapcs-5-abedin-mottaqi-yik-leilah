@@ -4,6 +4,7 @@ public class UIManager {
     private boolean inGameOver = false;
     private boolean inWinScreen = false;
     private String selectedPlant = "Sunflower";
+    PImage menu = loadImage("menu.png");
 
     public void drawUI(int sunBalance){
         drawButtons();
@@ -49,13 +50,8 @@ public class UIManager {
     }
 
     public void showMainMenu(){
-        background(200);
-        fill(0);
-        textSize(48);
+        image(menu, 0, 0, width, height);
         textAlign(CENTER, CENTER);
-        text("Plants vs Zombies", width/2, height/2 - 50);
-        textSize(24);
-        text("Click to Start", width/2, height/2 + 20);
     }
 
     public void showPauseScreen(){

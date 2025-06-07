@@ -48,8 +48,6 @@ public class Lawnmower implements Displayable{
       sprite = loadImage("mower.png");
       sprite.resize(40,50);
       image(sprite,x-25,y-25);
-      //fill(200,0,0);
-      //rect(x,y-25,40,50); 
     }
   }
 

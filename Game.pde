@@ -15,11 +15,10 @@ public class Game {
   private int sunTimer = 0;
   private int waveTimer = 1200;
   private boolean startWave = false;
-  private PImage lawn;
 
-  private int fastRecharge = 450;
-  private int slowRecharge = 1800;
-  private int verySlowRecharge = 3000;
+  private int peashooterCooldown = 0;
+  private int sunflowerCooldown = 0;
+  private int wallnutCooldown = 0;
 
   public Game(int ScreenWidth, int ScreenHeight) {
     board = new Board(5,9,ScreenWidth,ScreenHeight);
@@ -70,6 +69,11 @@ public class Game {
       spawnSun(null);
       sunTimer = 0;
     }
+
+    // cooldown timer logic
+    if (sunflowerCooldown > 0) sunflowerCooldown--;
+    if (peashooterCooldown > 0) peashooterCooldown--;
+    if (wallnutCooldown > 0) wallnutCooldown--;
 
     for (Zombie z: zombies) z.update();
     for (Projectile pr: projectiles) pr.update();
@@ -237,20 +241,33 @@ public class Game {
         return;
       }
 
+      String selected = menu.getSelectedPlant();
       Plant newPlant = null;
+      boolean canPlace = false;
 
-      if (menu.getSelectedPlant().equals("Sunflower")) {
+      if (selected.equals("Sunflower") && sunflowerCooldown == 0) {
           newPlant = new Sunflower(cell[0], cell[1], this);
-      } else if (menu.getSelectedPlant().equals("Peashooter")) {
+          canPlace = true;
+      } else if (selected.equals("Peashooter") && peashooterCooldown == 0) {
           newPlant = new Peashooter(cell[0], cell[1], this);
-      } else if (menu.getSelectedPlant().equals("Wallnut")){
+          canPlace = true;
+      } else if (selected.equals("Wallnut") && wallnutCooldown == 0){
           newPlant = new Wallnut(cell[0],cell[1]);
+          canPlace = true;
       }
 
-      if (newPlant != null && !board.isOccupied(cell[0], cell[1])){
+      if (newPlant != null && canPlace && !board.isOccupied(cell[0], cell[1])){
         if (suns.spendSun(newPlant.getCost())) {
           if (board.placePlant(newPlant, cell)) {
             plants.add(newPlant);
+
+            if (selected.equals("Sunflower")) {
+              sunflowerCooldown = 450;
+            } else if (selected.equals("Peashooter")) {
+              peashooterCooldown = 450;
+            } else if (selected.equals("Wallnut")){
+              wallnutCooldown = 1800;
+            }
           }
         }
       }
@@ -304,9 +321,5 @@ public class Game {
     menu.setInWinScreen(false);
     menu.setInPauseMenu(false);
     menu.setInMainMenu(true);
-  }
-
-  public void startRecharge(){
-
   }
 }
