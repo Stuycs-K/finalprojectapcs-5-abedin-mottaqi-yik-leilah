@@ -1,5 +1,4 @@
 import java.awt.Point;
-import processing.core.PApplet;
 public abstract class Plant implements Displayable, Interactable{
   private int cost;
   private int health;
@@ -53,5 +52,5 @@ public abstract class Plant implements Displayable, Interactable{
   }
 
   public abstract void update();
-  public abstract void show(PApplet p);
+  public abstract void show();
 }

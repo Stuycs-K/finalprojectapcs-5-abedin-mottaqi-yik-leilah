@@ -1,16 +1,9 @@
-import processing.core.PApplet;
 public class UIManager {
     private boolean inMainMenu = true;
     private boolean inPauseMenu = false;
     private boolean inGameOver = false;
     private boolean inWinScreen = false;
     private String selectedPlant = "Sunflower";
-
-    private PApplet p;
-
-    public UIManager(PApplet p) {
-        this.p = p;
-    }
 
     public void drawUI(int sunBalance){
         drawButtons();
@@ -19,74 +12,74 @@ public class UIManager {
 
     public void drawButtons() {
         if (selectedPlant.equals("Sunflower")) {
-          p.fill(p.color(255, 255, 100));
+          fill(color(255, 255, 100));
         } else {
-          p.fill(200);
+          fill(200);
         }
-        p.rect(10,50,100,40);
-        p.fill(0);
-        p.textSize(16);
-        p.text("Sunflower", 60, 70);
+        rect(10,50,100,40);
+        fill(0);
+        textSize(16);
+        text("Sunflower", 60, 70);
 
         if (selectedPlant.equals("Peashooter")) {
-          p.fill(p.color(100, 255, 100));
+          fill(color(100, 255, 100));
         } else {
-          p.fill(200);
+          fill(200);
         }
-        p.rect(120,50,100,40);
-        p.fill(0);
-        p.textSize(16);
-        p.text("Peashooter", 170, 70);
+        rect(120,50,100,40);
+        fill(0);
+        textSize(16);
+        text("Peashooter", 170, 70);
 
         if (selectedPlant.equals("Wallnut")) {
-          p.fill(p.color(88, 57, 39));
+          fill(color(88, 57, 39));
         } else {
-          p.fill(200);
+          fill(200);
         }
-        p.rect(230,50,100,40);
-        p.fill(0);
-        p.textSize(16);
-        p.text("Wallnut", 280, 70);
+        rect(230,50,100,40);
+        fill(0);
+        textSize(16);
+        text("Wallnut", 280, 70);
     }
 
     public void drawSunCounter(int sunBalance){
-        p.fill(0);
-        p.textSize(24);
-        p.text("Sun: " + sunBalance, 50, 30);
+        fill(0);
+        textSize(24);
+        text("Sun: " + sunBalance, 50, 30);
     }
 
     public void showMainMenu(){
-        p.background(200);
-        p.fill(0);
-        p.textSize(48);
-        p.textAlign(p.CENTER, p.CENTER);
-        p.text("Plants vs Zombies", p.width/2, p.height/2 - 50);
-        p.textSize(24);
-        p.text("Click to Start", p.width/2, p.height/2 + 20);
+        background(200);
+        fill(0);
+        textSize(48);
+        textAlign(CENTER, CENTER);
+        text("Plants vs Zombies", width/2, height/2 - 50);
+        textSize(24);
+        text("Click to Start", width/2, height/2 + 20);
     }
 
     public void showPauseScreen(){
-        p.fill(0,100);
-        p.rect(0,0,p.width,p.height);
-        p.fill(255);
-        p.textSize(32);
-        p.text("Paused",p.width/2,p.height/2);
+        fill(0,100);
+        rect(0,0,width,height);
+        fill(255);
+        textSize(32);
+        text("Paused",width/2,height/2);
     }
 
     public void showGameOverScreen() {
-        p.background(0);
-        p.fill(255, 0, 0);
-        p.textSize(48);
-        p.textAlign(p.CENTER, p.CENTER);
-        p.text("Game Over", p.width / 2, p.height / 2);
+        background(0);
+        fill(255, 0, 0);
+        textSize(48);
+        textAlign(CENTER, CENTER);
+        text("Game Over", width / 2, height / 2);
     }
 
     public void showWinScreen() {
-        p.background(255);
-        p.fill(0, 200, 0);
-        p.textSize(48);
-        p.textAlign(p.CENTER, p.CENTER);
-        p.text("You Win", p.width / 2, p.height / 2);
+        background(255);
+        fill(0, 200, 0);
+        textSize(48);
+        textAlign(CENTER, CENTER);
+        text("You Win", width / 2, height / 2);
     }
 
     public boolean inMainMenu() {

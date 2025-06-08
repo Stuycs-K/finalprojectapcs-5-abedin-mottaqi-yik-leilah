@@ -1,5 +1,3 @@
-import java.awt.Point;
-import processing.core.PApplet;
 public abstract class Zombie implements Displayable{
 
     /*
@@ -43,18 +41,5 @@ public abstract class Zombie implements Displayable{
     }
 
     public abstract void update();
-    public abstract void show(PApplet p);
-    /* gonna remove for now, trying to make a functioning game
-    public void move(){
-      pos -= speed;
-    }
-
-    public void eat(Plant target){
-      target.updateHealth(damage);
-    }
-
-
-    private void die(){
-      hide();
-    } */
+    public abstract void show();
 }

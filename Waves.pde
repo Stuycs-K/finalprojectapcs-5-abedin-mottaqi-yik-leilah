@@ -1,4 +1,3 @@
-import processing.core.PApplet;
 import java.util.*;
 public class Waves {
     // private data container class for spawning zombies, easier organization

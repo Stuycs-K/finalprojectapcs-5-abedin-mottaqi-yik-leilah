@@ -1,4 +1,3 @@
-import processing.core.PApplet;
 import java.awt.Point;
 public abstract class Projectile implements Displayable{
   private float x,y;
@@ -43,5 +42,5 @@ public abstract class Projectile implements Displayable{
   }
 
   public abstract void update();
-  public abstract void show(PApplet p);
+  public abstract void show();
 }

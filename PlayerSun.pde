@@ -1,5 +1,5 @@
 public class PlayerSun{
-  private int balance = 50; // renamed sunAmount to balance b/c it sounds better
+  private int balance = 550; // renamed sunAmount to balance b/c it sounds better
 
   public int getBalance(){
     return balance;

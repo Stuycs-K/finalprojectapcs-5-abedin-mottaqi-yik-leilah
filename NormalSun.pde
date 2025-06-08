@@ -1,9 +1,9 @@
-import processing.core.PApplet;
 import java.awt.Point;
 public class NormalSun implements Displayable, Interactable {
     private float x,y;
     private float yFinal;
     private boolean collected = false;
+    private PImage sprite;
     /*
      * notes:
      * - sun spawns roughly every 8 seconds
@@ -28,10 +28,11 @@ public class NormalSun implements Displayable, Interactable {
         this.yFinal = spawn.y;
     }
     @Override
-    public void show(PApplet p) {
+    public void show() {
         if (!collected) {
-            p.fill(255, 255, 0);
-            p.ellipse(x, y, 30, 30);
+            sprite = loadImage("sun.png");
+            sprite.resize(50,50);
+            image(sprite, x-25, y-25);
         }
     }
 
@@ -40,7 +41,6 @@ public class NormalSun implements Displayable, Interactable {
     }
 
     public void update() {
-        // make it fall, can change later
         if (!collected && Math.abs(y - yFinal) > 0.7){
             y += 1;
         }

@@ -1,6 +1,4 @@
 import java.util.*;
-import processing.core.PApplet;
-import processing.core.PConstants;
 import java.awt.Point;
 public class Game {
   private ArrayList<Plant> plants = new ArrayList<>();
@@ -17,23 +15,18 @@ public class Game {
   private int sunTimer = 0;
   private int waveTimer = 1200;
   private boolean startWave = false;
+  private PImage lawn;
 
   private int fastRecharge = 450;
   private int slowRecharge = 1800;
   private int verySlowRecharge = 3000;
 
-  private PApplet p;
-
-  public Game(int ScreenWidth, int ScreenHeight, PApplet p) {
-    board = new Board(5,9,ScreenWidth,ScreenHeight,p);
-    this.p = p;
-    Peashooter.setGame(this); // need these for now to make work
-    Sunflower.setGame(this);
-    NormalZombie.setGame(this);
+  public Game(int ScreenWidth, int ScreenHeight) {
+    board = new Board(5,9,ScreenWidth,ScreenHeight);
     for (int row=0;row<5;row++){
       lawnmowers.add(new Lawnmower(row));
     }
-    this.menu = new UIManager(p);
+    this.menu = new UIManager();
   }
   public void startLevel(int idx){
     waves = new Waves();
@@ -48,8 +41,8 @@ public class Game {
       for (int i = 0; i < zombiesInWave; i++) {
         int delay = frameCount + i * spawnSpacingTime;
         int row = rand.nextInt(5);
-        Point spawnPos = new Point(p.width,row * 100 + 40);
-        waves.addZombie(delay,new NormalZombie(spawnPos));
+        Point spawnPos = new Point(width,row * 100 + 40);
+        waves.addZombie(delay,new NormalZombie(spawnPos, this));
       }
       frameCount+= waveSpacingTime;
     }
@@ -139,24 +132,24 @@ public class Game {
   }
 
   public void render() {
-    board.drawGrid();
+    //board.drawGrid();
     board.drawPlants();
-    for (Zombie z: zombies) z.show(p);
-    for (Projectile pr: projectiles) pr.show(p);
-    for (NormalSun sun: sunObjects) sun.show(p);
-    for (Lawnmower l: lawnmowers) l.show(p);
+    for (Zombie z: zombies) z.show();
+    for (Projectile pr: projectiles) pr.show();
+    for (NormalSun sun: sunObjects) sun.show();
+    for (Lawnmower l: lawnmowers) l.show();
 
     menu.drawUI(suns.getBalance());
 
     if (shovelMode){
-      p.fill(p.color(255, 100, 100));
+      fill(color(255, 100, 100));
     } else {
-      p.fill(200);
+      fill(200);
     }
-    p.rect(340,50,100,40);
-    p.fill(0);
-    p.textSize(16);
-    p.text("Shovel", 390, 70);
+    rect(340,50,100,40);
+    fill(0);
+    textSize(16);
+    text("Shovel", 390, 70);
 
     if (menu.inMainMenu()) {
       menu.showMainMenu();
@@ -165,33 +158,33 @@ public class Game {
     if (menu.inGameOver()) {
       menu.showGameOverScreen();
 
-      p.fill(200);
-      p.rect(375,400,200,50);
-      p.fill(0);
-      p.textSize(24);
-      p.text("Restart", 475, 425);
+      fill(200);
+      rect(375,400,200,50);
+      fill(0);
+      textSize(24);
+      text("Restart", 475, 425);
 
       return;
     }
     if (menu.inWinScreen()) {
       menu.showWinScreen();
 
-      p.fill(200);
-      p.rect(375,400,200,50);
-      p.fill(0);
-      p.textSize(24);
-      p.text("Restart", 475, 425);
+      fill(200);
+      rect(375,400,200,50);
+      fill(0);
+      textSize(24);
+      text("Restart", 475, 425);
 
       return;
     }
     if (menu.inPauseMenu()) {
       menu.showPauseScreen();
 
-      p.fill(200);
-      p.rect(375,400,200,50);
-      p.fill(0);
-      p.textSize(24);
-      p.text("Restart", 475, 425);
+      fill(200);
+      rect(375,400,200,50);
+      fill(0);
+      textSize(24);
+      text("Restart", 475, 425);
 
       return;
     }
@@ -201,7 +194,7 @@ public class Game {
   public void handleClick(int x,int y, int button) {
     // check if clicking a sun
     for (NormalSun sun: sunObjects) {
-      if (!sun.isCollected() && sun.clicked(p.mouseX, p.mouseY)) {
+      if (!sun.isCollected() && sun.clicked(mouseX, mouseY)) {
         sun.onClick();
         suns.addSun(25);
         return;
@@ -247,9 +240,9 @@ public class Game {
       Plant newPlant = null;
 
       if (menu.getSelectedPlant().equals("Sunflower")) {
-          newPlant = new Sunflower(cell[0], cell[1]);
+          newPlant = new Sunflower(cell[0], cell[1], this);
       } else if (menu.getSelectedPlant().equals("Peashooter")) {
-          newPlant = new Peashooter(cell[0], cell[1]);
+          newPlant = new Peashooter(cell[0], cell[1], this);
       } else if (menu.getSelectedPlant().equals("Wallnut")){
           newPlant = new Wallnut(cell[0],cell[1]);
       }
