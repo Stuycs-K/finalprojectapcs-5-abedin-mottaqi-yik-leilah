@@ -43,3 +43,9 @@ Worked on main game background.
 
 ### 2024-06-04 - Background
 Almost completed main game background. Uploaded sprites (needed to make bg transparent).
+
+### 2024-06-05 - Game and Start Screens
+Completed main game background. Started start screen. 
+
+### 2024-06-06 - Start, Win, Loss Screens
+Completed start, win, and loss screens. Uploaded.
