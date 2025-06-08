@@ -48,4 +48,4 @@ Almost completed main game background. Uploaded sprites (needed to make bg trans
 Completed main game background. Started start screen. 
 
 ### 2024-06-06 - Start, Win, Loss Screens
-Completed start, win, and loss screens. Uploaded.
+Completed start, win, and loss screens. Uploaded. Added them to the game. 
