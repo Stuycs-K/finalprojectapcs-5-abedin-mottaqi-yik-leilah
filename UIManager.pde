@@ -4,6 +4,10 @@ public class UIManager {
     private boolean inGameOver = false;
     private boolean inWinScreen = false;
     private String selectedPlant = "Sunflower";
+    
+    private PImage winScreen = loadImage("win_screen.jpg");
+    private PImage loseScreen = loadImage("lose_screen.jpg");
+    private PImage mainMenu = loadImage("start_screen.jpg");
 
     public void drawUI(int sunBalance){
         drawButtons();
@@ -49,13 +53,14 @@ public class UIManager {
     }
 
     public void showMainMenu(){
-        background(200);
-        fill(0);
-        textSize(48);
-        textAlign(CENTER, CENTER);
-        text("Plants vs Zombies", width/2, height/2 - 50);
-        textSize(24);
-        text("Click to Start", width/2, height/2 + 20);
+      image(mainMenu,0,0);
+        //background(200);
+        //fill(0);
+        //textSize(48);
+        //textAlign(CENTER, CENTER);
+        //text("Plants vs Zombies", width/2, height/2 - 50);
+        //textSize(24);
+        //text("Click to Start", width/2, height/2 + 20);
     }
 
     public void showPauseScreen(){
@@ -67,19 +72,21 @@ public class UIManager {
     }
 
     public void showGameOverScreen() {
-        background(0);
-        fill(255, 0, 0);
-        textSize(48);
-        textAlign(CENTER, CENTER);
-        text("Game Over", width / 2, height / 2);
+      image(loseScreen,0,0);
+        //background(0);
+        //fill(255, 0, 0);
+        //textSize(48);
+        //textAlign(CENTER, CENTER);
+        //text("Game Over", width / 2, height / 2);
     }
 
     public void showWinScreen() {
-        background(255);
-        fill(0, 200, 0);
-        textSize(48);
-        textAlign(CENTER, CENTER);
-        text("You Win", width / 2, height / 2);
+      image(winScreen,0,0);
+        //background(255);
+        //fill(0, 200, 0);
+        //textSize(48);
+        //textAlign(CENTER, CENTER);
+        //text("You Win", width / 2, height / 2);
     }
 
     public boolean inMainMenu() {
