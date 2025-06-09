@@ -17,5 +17,16 @@ We have also illustrated our own lawnmowers, suns, peas, and game background. Th
 
 # Intended usage:
 
-A description as to how the project will be used (describe the user interface). (CHANGE THIS!!!!!)
-  
+To start playing our game, click anywhere in the Processing Sketch on the start screen. 
+
+Click on the desired button to select a plant. The selected button should have a colored background. Then, press a square on the grid to place the plant in. You can only place a plant when you have enough sun to afford it. 
+
+Collect sun by clicking it while it is falling, when it lands, or when sunflowers spawn it. 
+
+To remove plants, click the shovel icon. If you have done this successfully, the shovel button should turn red. Then, click on the plant you would like to remove. 
+
+Press 'p' to pause the game. Press 'p' to unpause the game.
+
+Press 's' to gain 100 sun. Press 'k' to kill all zombies. 
+
+Press the 'Restart' button in the pause screen, win screen, or loss screen to restart the game.
