@@ -22,6 +22,10 @@ Some things we will use that we have learned from class are interfaces and class
 
 UML Diagrams and descriptions of key algorithms, classes, and how things fit together.
 
+Updated (more recently) UML:
+https://drive.google.com/file/d/1-tczdxmiCW5nYJZR1coj2HWbhy9O71B7/view?usp=sharing
+![UML Diagaram](FINAL_UML.drawio.png)
+
 Updated UML:
 ![UML Diagram](UML_UPDATED-1.drawio.png)
 
