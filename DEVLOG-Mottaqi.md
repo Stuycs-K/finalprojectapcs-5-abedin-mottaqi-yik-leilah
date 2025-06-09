@@ -53,3 +53,14 @@ started adding sprites to plants
 ## 2025-06-04 - more sprites and recharge
 finished adding sprites for sunflower and peashooter, wallnut still needs lowhealth sprite
 started working on a recharge system when placing plants
+
+## 2025-06-07 - recharges, more zombies, better waves, cheats
+worked on creating recharges
+added conehead and flagzombies
+started working on harder waves
+added cheats
+
+## 2025-06-08 - finished recharge, fixed bugs, new waves
+completed recharge system
+fixed bugs relating to new zombies and cheats
+finished making a new wave system to incorporate the new zombies
