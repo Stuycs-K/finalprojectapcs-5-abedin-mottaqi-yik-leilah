@@ -43,6 +43,7 @@ public class Lawnmower implements Displayable{
   }
 
   public void reset(){
+    this.x = 0;
     active=false;
     used=false;
   }
