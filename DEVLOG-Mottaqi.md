@@ -64,3 +64,6 @@ added cheats
 completed recharge system
 fixed bugs relating to new zombies and cheats
 finished making a new wave system to incorporate the new zombies
+
+
+"I believe this document accurately reflects the contributions of my teamate." -Leilah Yik
