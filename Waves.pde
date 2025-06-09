@@ -38,20 +38,17 @@ public class Waves {
 
       for (int wave = 0; wave < zombieCounts.length; wave++) {
         int[] zombiesInWave = zombieCounts[wave];
-        if (zombieCounts.length > 0) {
-          int normals = zombieCounts[0];
-        } else {
-          int normals = 0;
+        int normals = 0;
+        int flags = 0;
+        int cones = 0;
+        if (zombiesInWave.length > 0) {
+          normals = zombiesInWave[0];
         }
-        if (zombieCounts.length > 1) {
-          int flags = zombieCounts[1];
-        } else {
-          int flags = 0;
-        }
-        if (zombieCounts.length > 2) {
-          int cones = zombieCounts[2];
-        } else {
-          int cones = 0;
+        if (zombiesInWave.length > 1) {
+          flags = zombiesInWave[1];
+        } 
+        if (zombiesInWave.length > 2) {
+          cones = zombiesInWave[2];
         }
         for (int i = 0; i < normals; i++) {
           int row = rand.nextInt(5);

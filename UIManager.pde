@@ -4,7 +4,9 @@ public class UIManager {
     private boolean inGameOver = false;
     private boolean inWinScreen = false;
     private String selectedPlant = "Sunflower";
-    PImage menu = loadImage("menu.png");
+    PImage menu = loadImage("start_screen.jpg");
+    PImage loss = loadImage("lose_screen.jpg");
+    PImage win = loadImage("win_screen.jpg");
 
     public void drawUI(int sunBalance){
         drawButtons();
@@ -63,19 +65,13 @@ public class UIManager {
     }
 
     public void showGameOverScreen() {
-        background(0);
-        fill(255, 0, 0);
-        textSize(48);
+        image(loss, 0, 0, width, height);
         textAlign(CENTER, CENTER);
-        text("Game Over", width / 2, height / 2);
     }
 
     public void showWinScreen() {
-        background(255);
-        fill(0, 200, 0);
-        textSize(48);
+        image(win, 0, 0, width, height);
         textAlign(CENTER, CENTER);
-        text("You Win", width / 2, height / 2);
     }
 
     public boolean inMainMenu() {

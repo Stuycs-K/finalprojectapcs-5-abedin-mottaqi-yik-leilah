@@ -29,23 +29,7 @@ public class Game {
     this.menu = new UIManager();
   }
   public void startLevel(int idx){
-    waves = new Waves();
-    Random rand = new Random();
-    int[] zombieCounts = new int[]{1,1,1,2,2,3,3,3,4,10}; // how many zombies spawn in each wave (10 waves)
-    int spawnSpacingTime = 240;
-    int waveSpacingTime = 480;
-    int frameCount = 0;
-
-    for (int wave = 0; wave < zombieCounts.length; wave++) {
-      int zombiesInWave = zombieCounts[wave];
-      for (int i = 0; i < zombiesInWave; i++) {
-        int delay = frameCount + i * spawnSpacingTime;
-        int row = rand.nextInt(5);
-        Point spawnPos = new Point(width,row * 100 + 40);
-        waves.addZombie(delay,new NormalZombie(spawnPos, this));
-      }
-      frameCount+= waveSpacingTime;
-    }
+    waves = new Waves(this);
   }
   public void update() {
     // check if in menu, pause, or end screen
@@ -334,6 +318,9 @@ public class Game {
     peashooterCooldown = 0;
     sunflowerCooldown = 0;
     wallnutCooldown = 0;
+    for(Lawnmower l : lawnmowers){
+      l.reset();
+    }
 
     menu.setInGameOver(false);
     menu.setInWinScreen(false);

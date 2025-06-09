@@ -42,6 +42,11 @@ public class Lawnmower implements Displayable{
     return used;
   }
 
+  public void reset(){
+    active=false;
+    used=false;
+  }
+
   @Override
   public void show(){
     if (!used || active){
