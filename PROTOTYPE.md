@@ -27,7 +27,7 @@ https://drive.google.com/file/d/1-tczdxmiCW5nYJZR1coj2HWbhy9O71B7/view?usp=shari
 ![UML Diagaram](FINAL_UML.drawio.png)
 
 Updated UML:
-![UML Diagram](UML_UPDATED-1.drawio.png)
+![UML Diagram](UML_UPDATED_1.drawio.png)
 
 Old UML:
 ![UML Diagram](UMLDiagramUpdated.drawio.png)
