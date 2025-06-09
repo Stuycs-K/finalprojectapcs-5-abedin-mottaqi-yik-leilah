@@ -11,7 +11,7 @@ public class FlagZombie extends Zombie{
   private String lowHealth = "normalzombie_3.png";
 
 
-  public ConheadZombie(Point start, Game game){
+  public FlagZombie(Point start, Game game){
     super(start,180);
     this.game = game;
   };

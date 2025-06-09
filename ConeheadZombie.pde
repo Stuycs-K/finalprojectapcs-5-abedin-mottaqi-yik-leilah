@@ -11,7 +11,7 @@ public class ConeheadZombie extends Zombie{
   private String lowHealth = "normalzombie_3.png";
 
 
-  public ConheadZombie(Point start, Game game){
+  public ConeheadZombie(Point start, Game game){
     super(start,550);
     this.game = game;
   };
