@@ -42,14 +42,17 @@ public class Lawnmower implements Displayable{
     return used;
   }
 
+  public void reset(){
+    active=false;
+    used=false;
+  }
+
   @Override
   public void show(){
     if (!used || active){
       sprite = loadImage("mower.png");
       sprite.resize(40,50);
       image(sprite,x-25,y-25);
-      //fill(200,0,0);
-      //rect(x,y-25,40,50); 
     }
   }
 
