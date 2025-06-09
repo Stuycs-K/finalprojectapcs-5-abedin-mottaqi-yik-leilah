@@ -4,17 +4,16 @@ public class UIManager {
     private boolean inGameOver = false;
     private boolean inWinScreen = false;
     private String selectedPlant = "Sunflower";
-    
-    private PImage winScreen = loadImage("win_screen.jpg");
-    private PImage loseScreen = loadImage("lose_screen.jpg");
-    private PImage mainMenu = loadImage("start_screen.jpg");
+    PImage menu = loadImage("start_screen.jpg");
+    PImage loss = loadImage("lose_screen.jpg");
+    PImage win = loadImage("win_screen.jpg");
 
-    public void drawUI(int sunBalance){
-        drawButtons();
+    public void drawUI(int sunBalance, int sunflowerCooldown, int peashooterCooldown, int wallnutCooldown){
+        drawButtons(sunflowerCooldown,peashooterCooldown,wallnutCooldown);
         drawSunCounter(sunBalance);
     }
 
-    public void drawButtons() {
+    public void drawButtons(int sunflowerCooldown, int peashooterCooldown, int wallnutCooldown) {
         if (selectedPlant.equals("Sunflower")) {
           fill(color(255, 255, 100));
         } else {
@@ -22,8 +21,13 @@ public class UIManager {
         }
         rect(10,50,100,40);
         fill(0);
-        textSize(16);
-        text("Sunflower", 60, 70);
+        textSize(12);
+        text("Sunflower", 10 + 50, 50 + 10);
+        if (sunflowerCooldown > 0) {
+            text("CD: " + sunflowerCooldown/60 + "s", 10 + 50, 50 + 30);
+        } else {
+            text("Ready", 10 + 50, 50 + 30);
+        }
 
         if (selectedPlant.equals("Peashooter")) {
           fill(color(100, 255, 100));
@@ -32,8 +36,13 @@ public class UIManager {
         }
         rect(120,50,100,40);
         fill(0);
-        textSize(16);
-        text("Peashooter", 170, 70);
+        textSize(12);
+        text("Peashooter", 120 + 50, 50 + 10);
+        if (peashooterCooldown > 0) {
+            text("CD: " + peashooterCooldown/60 + "s", 120 + 50, 50 + 30);
+        } else {
+            text("Ready", 120 + 50, 50 + 30);
+        }
 
         if (selectedPlant.equals("Wallnut")) {
           fill(color(88, 57, 39));
@@ -42,8 +51,13 @@ public class UIManager {
         }
         rect(230,50,100,40);
         fill(0);
-        textSize(16);
-        text("Wallnut", 280, 70);
+        textSize(12);
+        text("Wallnut", 230 + 50, 50 + 10);
+        if (wallnutCooldown > 0) {
+            text("CD: " + wallnutCooldown/60 + "s", 230 + 50, 50 + 30);
+        } else {
+            text("Ready", 230 + 50, 50 + 30);
+        }
     }
 
     public void drawSunCounter(int sunBalance){
@@ -53,6 +67,7 @@ public class UIManager {
     }
 
     public void showMainMenu(){
+<<<<<<< HEAD
       image(mainMenu,0,0);
         //background(200);
         //fill(0);
@@ -61,6 +76,10 @@ public class UIManager {
         //text("Plants vs Zombies", width/2, height/2 - 50);
         //textSize(24);
         //text("Click to Start", width/2, height/2 + 20);
+=======
+        image(menu, 0, 0, width, height);
+        textAlign(CENTER, CENTER);
+>>>>>>> 952ab037bb6b470c4ea361c1c49cb99b402700df
     }
 
     public void showPauseScreen(){
@@ -72,6 +91,7 @@ public class UIManager {
     }
 
     public void showGameOverScreen() {
+<<<<<<< HEAD
       image(loseScreen,0,0);
         //background(0);
         //fill(255, 0, 0);
@@ -87,6 +107,15 @@ public class UIManager {
         //textSize(48);
         //textAlign(CENTER, CENTER);
         //text("You Win", width / 2, height / 2);
+=======
+        image(loss, 0, 0, width, height);
+        textAlign(CENTER, CENTER);
+    }
+
+    public void showWinScreen() {
+        image(win, 0, 0, width, height);
+        textAlign(CENTER, CENTER);
+>>>>>>> 952ab037bb6b470c4ea361c1c49cb99b402700df
     }
 
     public boolean inMainMenu() {
