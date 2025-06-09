@@ -18,7 +18,5 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if (key == 'P' || key == 'p') {
-    game.togglePause();
-  }
+  game.handleKeyPress(key);
 }
