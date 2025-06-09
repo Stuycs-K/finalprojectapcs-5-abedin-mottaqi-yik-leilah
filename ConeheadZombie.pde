@@ -10,9 +10,12 @@ public class ConeheadZombie extends Zombie{
   private String medHealth = "normalzombie_2.png";
   private String lowHealth = "normalzombie_3.png";
 
+  private String fullCone = "cone_1.PNG";
+  private String medCone = "cone_2.PNG";
+  private String lowCone = "cone_3.PNG";
 
   public ConeheadZombie(Point start, Game game){
-    super(start,550);
+    super(start,420);
     this.game = game;
   };
 
@@ -38,13 +41,25 @@ public class ConeheadZombie extends Zombie{
   }
   @Override
   public void show() {
-    if (getHealth() >= 120) {
+    boolean hasCone = false;
+    if(getHealth() >= 340){
+      sprite = loadImage(fullCone);
+      hasCone = true;
+    } else if (getHealth() >= 260){
+      sprite = loadImage(medCone);
+      hasCone = true;
+    } else if (getHealth() >= 180){
+      sprite = loadImage(lowCone);
+      hasCone = true;
+    } else if (getHealth() >= 120) {
       sprite = loadImage(fullHealth);
     } else if (getHealth() >= 60) {
       sprite = loadImage(medHealth);
     } else {
       sprite = loadImage(lowHealth);
     }
-    image(sprite, (getX() - 20), (getY() - 60));
+    if(hasCone){
+      image(sprite, (getX() - 20), (getY() - 75));
+    } else image(sprite, (getX() - 20), (getY() - 60));
   }
 }

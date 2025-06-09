@@ -6,9 +6,9 @@ public class FlagZombie extends Zombie{
   private PImage sprite;
   Game game;
 
-  private String fullHealth = "normalzombie_1.png";
-  private String medHealth = "normalzombie_2.png";
-  private String lowHealth = "normalzombie_3.png";
+  private String fullHealth = "flag_1.PNG";
+  private String medHealth = "flag_2.PNG";
+  private String lowHealth = "flag_3.PNG";
 
 
   public FlagZombie(Point start, Game game){

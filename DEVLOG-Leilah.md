@@ -47,5 +47,5 @@ Almost completed main game background. Uploaded sprites (needed to make bg trans
 ### 2024-06-05 - Game and Start Screens
 Completed main game background. Started start screen. 
 
-### 2024-06-06 - Start, Win, Loss Screens
-Completed start, win, and loss screens. Uploaded. Added them to the game. Drew sprites for flag zombie, conehead zombie. Fixed transparency of normal zombie (healthy). Fixed transparency of peashooter (deeply injured). Moved restart button to adjust for new win/loss screens. Adjusted numbers in waves for balancing.
+### 2024-06-06 - Start, Win, Loss Screens + Adding Sprites
+Completed start, win, and loss screens. Uploaded. Added them to the game. Drew sprites for flag zombie, conehead zombie. Fixed transparency of normal zombie (healthy). Fixed transparency of peashooter (deeply injured). Moved restart button to adjust for new win/loss screens. Adjusted numbers in waves for balancing. Added conehead and flag zombie sprites. Fixed Conehead sprite positioning.
