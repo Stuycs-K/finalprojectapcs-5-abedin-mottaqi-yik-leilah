@@ -148,10 +148,10 @@ public class Game {
       menu.showGameOverScreen();
 
       fill(200);
-      rect(375,400,200,50);
+      rect(375,500,200,50);
       fill(0);
       textSize(24);
-      text("Restart", 475, 600);
+      text("Restart", 475, 525);
 
       return;
     }
@@ -159,10 +159,10 @@ public class Game {
       menu.showWinScreen();
 
       fill(200);
-      rect(375,400,200,50);
+      rect(375,500,200,50);
       fill(0);
       textSize(24);
-      text("Restart", 475, 425);
+      text("Restart", 475, 525);
 
       return;
     }
@@ -170,10 +170,10 @@ public class Game {
       menu.showPauseScreen();
 
       fill(200);
-      rect(375,400,200,50);
+      rect(375,500,200,50);
       fill(0);
       textSize(24);
-      text("Restart", 475, 425);
+      text("Restart", 475, 525);
 
       return;
     }
@@ -196,7 +196,7 @@ public class Game {
       return;
     }
 
-    if ((menu.inGameOver() || menu.inWinScreen() || menu.inPauseMenu()) && x >= 375 && x <= 575 && y >= 400 && y <= 450) {
+    if ((menu.inGameOver() || menu.inWinScreen() || menu.inPauseMenu()) && x >= 375 && x <= 575 && y >= 500 && y <= 550) {
       restartGame();
       return;
     }
