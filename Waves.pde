@@ -32,8 +32,8 @@ public class Waves {
         {6,2,2} // 6 normal 2 flag 2 cone
       };
 
-      int spawnSpacingTime = 30;
-      int waveSpacingTime = 240;
+      int spawnSpacingTime = 300;
+      int waveSpacingTime = 750;
       int frameCount = 0;
 
       for (int wave = 0; wave < zombieCounts.length; wave++) {
