@@ -1,6 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/YxXKqIeT)
 # Project Description
 
+## Video: https://drive.google.com/drive/folders/1hWNzAQ9p3AqVXoS16UkYPlaeqs3mRgOq?usp=sharing
+
 Our project is our own version of Plants vs Zombies. Although we only have one level, it is complete with waves and randomization, so (almost) every playthrough is different! 
 
 We have created our own sprites for zombies and plants, and have added additional sprites to some plants (non-wallnuts) to better show their status. Every entity (plants, zombies) has at least 3 sprites that show how much health it has. 
