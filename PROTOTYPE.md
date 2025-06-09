@@ -1,13 +1,8 @@
 Period 5
 Mottaqi Abedin and Leilah Yik
-\[group name]
+The Planters
 
 # Technical Details:
-
-A description of your technical design. This should include:
-
-How you will be using the topics covered in class in the project.
-
 
 We will be creating our version of Plants vs Zombies, which is a tower defense game where players have to use plants to defend their house from an onslaught of zombies. Unfortunately, due to the existing game's complexity, we will have to dumb it down by reducing the varieties of plants and zombies, and we will not be adding features like powerups from Plants vs Zombies 2.
 
