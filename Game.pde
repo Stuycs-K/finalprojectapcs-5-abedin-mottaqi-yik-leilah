@@ -15,11 +15,11 @@ public class Game {
   private int sunTimer = 0;
   private int waveTimer = 1200;
   private boolean startWave = false;
-  private PImage lawn;
 
-  private int fastRecharge = 450;
-  private int slowRecharge = 1800;
-  private int verySlowRecharge = 3000;
+  private int peashooterCooldown = 0;
+  private int sunflowerCooldown = 0;
+  private int wallnutCooldown = 0;
+
 
   public Game(int ScreenWidth, int ScreenHeight) {
     board = new Board(5,9,ScreenWidth,ScreenHeight);
@@ -29,23 +29,7 @@ public class Game {
     this.menu = new UIManager();
   }
   public void startLevel(int idx){
-    waves = new Waves();
-    Random rand = new Random();
-    int[] zombieCounts = new int[]{1,1,1,2,2,3,3,3,4,10}; // how many zombies spawn in each wave (10 waves)
-    int spawnSpacingTime = 240;
-    int waveSpacingTime = 480;
-    int frameCount = 0;
-
-    for (int wave = 0; wave < zombieCounts.length; wave++) {
-      int zombiesInWave = zombieCounts[wave];
-      for (int i = 0; i < zombiesInWave; i++) {
-        int delay = frameCount + i * spawnSpacingTime;
-        int row = rand.nextInt(5);
-        Point spawnPos = new Point(width,row * 100 + 40);
-        waves.addZombie(delay,new NormalZombie(spawnPos, this));
-      }
-      frameCount+= waveSpacingTime;
-    }
+    waves = new Waves(this);
   }
   public void update() {
     // check if in menu, pause, or end screen
@@ -70,6 +54,11 @@ public class Game {
       spawnSun(null);
       sunTimer = 0;
     }
+
+    // cooldown timer logic
+    if (sunflowerCooldown > 0) sunflowerCooldown--;
+    if (peashooterCooldown > 0) peashooterCooldown--;
+    if (wallnutCooldown > 0) wallnutCooldown--;
 
     for (Zombie z: zombies) z.update();
     for (Projectile pr: projectiles) pr.update();
@@ -237,23 +226,50 @@ public class Game {
         return;
       }
 
+      String selected = menu.getSelectedPlant();
       Plant newPlant = null;
+      boolean canPlace = false;
 
-      if (menu.getSelectedPlant().equals("Sunflower")) {
+      if (selected.equals("Sunflower") && sunflowerCooldown == 0) {
           newPlant = new Sunflower(cell[0], cell[1], this);
-      } else if (menu.getSelectedPlant().equals("Peashooter")) {
+          canPlace = true;
+      } else if (selected.equals("Peashooter") && peashooterCooldown == 0) {
           newPlant = new Peashooter(cell[0], cell[1], this);
-      } else if (menu.getSelectedPlant().equals("Wallnut")){
+          canPlace = true;
+      } else if (selected.equals("Wallnut") && wallnutCooldown == 0){
           newPlant = new Wallnut(cell[0],cell[1]);
+          canPlace = true;
       }
 
-      if (newPlant != null && !board.isOccupied(cell[0], cell[1])){
+      if (newPlant != null && canPlace && !board.isOccupied(cell[0], cell[1])){
         if (suns.spendSun(newPlant.getCost())) {
           if (board.placePlant(newPlant, cell)) {
             plants.add(newPlant);
+
+            if (selected.equals("Sunflower")) {
+              sunflowerCooldown = 450;
+            } else if (selected.equals("Peashooter")) {
+              peashooterCooldown = 450;
+            } else if (selected.equals("Wallnut")){
+              wallnutCooldown = 1800;
+            }
           }
         }
       }
+    }
+  }
+
+  public void handleKeyPress(char key){
+    if (key == 's' || key == 'S'){
+      suns.addSun(100);
+      println("added 100 sun");
+    }
+    if (key == 'k' || key == 'K') {
+      zombies.clear();
+      println("cleared all zombies");
+    }
+    if (key == 'P' || key == 'p') {
+      togglePause();
     }
   }
 
@@ -299,14 +315,16 @@ public class Game {
     board.clear();
     waveTimer = 1800;
     startWave = false;
+    peashooterCooldown = 0;
+    sunflowerCooldown = 0;
+    wallnutCooldown = 0;
+    for(Lawnmower l : lawnmowers){
+      l.reset();
+    }
 
     menu.setInGameOver(false);
     menu.setInWinScreen(false);
     menu.setInPauseMenu(false);
     menu.setInMainMenu(true);
-  }
-
-  public void startRecharge(){
-
   }
 }
