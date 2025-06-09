@@ -18,15 +18,16 @@ Fixed inconsistencies and things that didn't make sense with what methods were i
 
 Worked on finding starting numbers for the game (PlayerSun starting amount, zombie/plant stats). Added more to the game class as well as what we put in our updated UML Diagram that I haven't uploaded yet. Added wave class for the levels. Worked on board class. Worked on UIManager.
 
-### 2025-05-28 -
+### 2025-05-28 - Plant work
+Tried to work on plants. First worked on peashooter and attempted work on projectile and its spawning. Adjusted Sunflower class.
 
 ### 2025-05-29 - Plants and Zombies
 Mostly worked on trying to fix classes like Plant (+ related - Peashooter, Sunflower), Zombie. Updated UML Diagram. Also worked on NrmalSun. Did a lot of stuff with cooldowns. Worked on update for projectile.
 
 ### 2025-05-30 - Plants and Zombies
+Attempted to fix zombie class so that it actually functions as an entity in processing. Modified files to adapt to processing. Fixed peashooter constructor and worked on cooldowns.
 
-
-### 2025-06-01 - 
+### 2025-06-01 - NormalSun and (scrapped) HealthBar
 Fixed sun so that it doesn't fall on sunflowers and that it stops falling to a certain (random) pos in the lawn. Adding a healthbar.
 
 ### 2025-06-02 - Sprites
