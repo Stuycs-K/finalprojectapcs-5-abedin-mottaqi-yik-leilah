@@ -151,7 +151,7 @@ public class Game {
       rect(375,400,200,50);
       fill(0);
       textSize(24);
-      text("Restart", 475, 425);
+      text("Restart", 475, 600);
 
       return;
     }
