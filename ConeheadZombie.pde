@@ -41,12 +41,16 @@ public class ConeheadZombie extends Zombie{
   }
   @Override
   public void show() {
-    if(getHealth >= 340){
+    boolean hasCone = false;
+    if(getHealth() >= 340){
       sprite = loadImage(fullCone);
-    } else if (getHealth >= 260){
+      hasCone = true;
+    } else if (getHealth() >= 260){
       sprite = loadImage(medCone);
-    } else if (getHealth >= 180){
+      hasCone = true;
+    } else if (getHealth() >= 180){
       sprite = loadImage(lowCone);
+      hasCone = true;
     } else if (getHealth() >= 120) {
       sprite = loadImage(fullHealth);
     } else if (getHealth() >= 60) {
@@ -54,6 +58,8 @@ public class ConeheadZombie extends Zombie{
     } else {
       sprite = loadImage(lowHealth);
     }
-    image(sprite, (getX() - 20), (getY() - 60));
+    if(hasCone){
+      image(sprite, (getX() - 20), (getY() - 75));
+    } else image(sprite, (getX() - 20), (getY() - 60));
   }
 }
