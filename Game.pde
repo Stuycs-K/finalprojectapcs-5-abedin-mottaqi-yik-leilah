@@ -128,7 +128,7 @@ public class Game {
     for (NormalSun sun: sunObjects) sun.show();
     for (Lawnmower l: lawnmowers) l.show();
 
-    menu.drawUI(suns.getBalance());
+    menu.drawUI(suns.getBalance(),sunflowerCooldown,peashooterCooldown,wallnutCooldown);
 
     if (shovelMode){
       fill(color(255, 100, 100));

@@ -8,12 +8,12 @@ public class UIManager {
     PImage loss = loadImage("lose_screen.jpg");
     PImage win = loadImage("win_screen.jpg");
 
-    public void drawUI(int sunBalance){
-        drawButtons();
+    public void drawUI(int sunBalance, int sunflowerCooldown, int peashooterCooldown, int wallnutCooldown){
+        drawButtons(sunflowerCooldown,peashooterCooldown,wallnutCooldown);
         drawSunCounter(sunBalance);
     }
 
-    public void drawButtons() {
+    public void drawButtons(int sunflowerCooldown, int peashooterCooldown, int wallnutCooldown) {
         if (selectedPlant.equals("Sunflower")) {
           fill(color(255, 255, 100));
         } else {
@@ -21,8 +21,13 @@ public class UIManager {
         }
         rect(10,50,100,40);
         fill(0);
-        textSize(16);
-        text("Sunflower", 60, 70);
+        textSize(12);
+        text("Sunflower", 10 + 50, 50 + 10);
+        if (sunflowerCooldown > 0) {
+            text("CD: " + sunflowerCooldown/60 + "s", 10 + 50, 50 + 30);
+        } else {
+            text("Ready", 10 + 50, 50 + 30);
+        }
 
         if (selectedPlant.equals("Peashooter")) {
           fill(color(100, 255, 100));
@@ -31,8 +36,13 @@ public class UIManager {
         }
         rect(120,50,100,40);
         fill(0);
-        textSize(16);
-        text("Peashooter", 170, 70);
+        textSize(12);
+        text("Peashooter", 120 + 50, 50 + 10);
+        if (peashooterCooldown > 0) {
+            text("CD: " + peashooterCooldown/60 + "s", 120 + 50, 50 + 30);
+        } else {
+            text("Ready", 120 + 50, 50 + 30);
+        }
 
         if (selectedPlant.equals("Wallnut")) {
           fill(color(88, 57, 39));
@@ -41,8 +51,13 @@ public class UIManager {
         }
         rect(230,50,100,40);
         fill(0);
-        textSize(16);
-        text("Wallnut", 280, 70);
+        textSize(12);
+        text("Wallnut", 230 + 50, 50 + 10);
+        if (wallnutCooldown > 0) {
+            text("CD: " + wallnutCooldown/60 + "s", 230 + 50, 50 + 30);
+        } else {
+            text("Ready", 230 + 50, 50 + 30);
+        }
     }
 
     public void drawSunCounter(int sunBalance){
